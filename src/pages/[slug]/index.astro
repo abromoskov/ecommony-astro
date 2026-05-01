@@ -1,0 +1,36 @@
+---
+import IntentPageLayout from '../../layouts/IntentPageLayout.astro';
+import { locationPages } from '../../data/locationPages';
+
+export function getStaticPaths() {
+  return locationPages.map((page) => ({
+    params: {
+      slug: page.slug,
+    },
+    props: {
+      page,
+    },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<IntentPageLayout
+  title={page.title}
+  description={page.description}
+  eyebrow={page.eyebrow}
+>
+  <section class="intent-hero">
+    <span class="pill">{page.eyebrow}</span>
+    <h1>{page.title}</h1>
+    <p class="sub">{page.description}</p>
+  </section>
+
+  <main class="content-card">
+    <section class="section-block">
+      <h2>London ecommerce support</h2>
+      <p>{page.intro}</p>
+    </section>
+  </main>
+</IntentPageLayout>
