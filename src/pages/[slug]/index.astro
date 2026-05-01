@@ -1,9 +1,23 @@
 ---
 import IntentPageLayout from '../../layouts/IntentPageLayout.astro';
 import { locationPages, getLocationPagePath } from '../../data/locationPages';
+import { problemPages, getProblemPagePath } from '../../data/problemPages';
+
+const allPages = [
+  ...locationPages.map((page) => ({
+    ...page,
+    pageKind: 'location',
+    path: getLocationPagePath(page),
+  })),
+  ...problemPages.map((page) => ({
+    ...page,
+    pageKind: 'problem',
+    path: getProblemPagePath(page),
+  })),
+];
 
 export function getStaticPaths() {
-  return locationPages.map((page) => ({
+  return allPages.map((page) => ({
     params: {
       slug: page.slug,
     },
@@ -16,7 +30,14 @@ export function getStaticPaths() {
 const { page } = Astro.props;
 
 const siteUrl = 'https://ecommony.com';
-const pageUrl = `${siteUrl}${getLocationPagePath(page)}`;
+const pageUrl = `${siteUrl}${page.path}`;
+
+const hasSummary = 'summary' in page && Boolean(page.summary);
+const hasProblemSections = page.pageKind === 'problem';
+const hasSources = 'sources' in page && Array.isArray(page.sources) && page.sources.length > 0;
+const hasInterpretation = 'ecommonyInterpretation' in page && Boolean(page.ecommonyInterpretation);
+const hasWhatBreaks = 'whatBreaks' in page && Array.isArray(page.whatBreaks) && page.whatBreaks.length > 0;
+const hasWhatToCheckFirst = 'whatToCheckFirst' in page && Array.isArray(page.whatToCheckFirst) && page.whatToCheckFirst.length > 0;
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -42,14 +63,29 @@ const serviceSchema = {
   '@type': 'ProfessionalService',
   name: 'Ecommony',
   url: pageUrl,
-  areaServed: {
-    '@type': 'City',
-    name: 'London',
-  },
+  areaServed: page.pageKind === 'location'
+    ? {
+        '@type': 'City',
+        name: 'London',
+      }
+    : 'GB',
   serviceType: page.serviceType,
   description: page.description,
   email: 'nigel@ecommony.com',
   telephone: '+447877932578',
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: page.title,
+  description: page.description,
+  url: pageUrl,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Ecommony',
+    url: siteUrl,
+  },
 };
 
 const faqSchema = {
@@ -73,6 +109,7 @@ const faqSchema = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -87,19 +124,67 @@ const faqSchema = {
     <p class="sub">{page.description}</p>
   </section>
 
+  {hasSummary && (
+    <section class="summary-card" aria-label="Summary">
+      <p>{page.summary}</p>
+    </section>
+  )}
+
   <div class="intent-grid">
     <main class="content-card">
       <section class="section-block">
-        <h2>London ecommerce support with a practical commercial focus</h2>
+        <h2>{page.introTitle || 'London ecommerce support with a practical commercial focus'}</h2>
         <p>{page.intro}</p>
       </section>
 
       <section class="section-block">
-        <h2>When this is worth looking at</h2>
+        <h2>{hasProblemSections ? 'Common symptoms' : 'When this is worth looking at'}</h2>
         <ul class="check-list">
           {page.symptoms.map((item) => <li>{item}</li>)}
         </ul>
       </section>
+
+      {hasWhatBreaks && (
+        <section class="section-block">
+          <h2>What usually breaks</h2>
+          <ul class="check-list">
+            {page.whatBreaks.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      )}
+
+      {hasWhatToCheckFirst && (
+        <section class="section-block">
+          <h2>What to check first</h2>
+          <ul class="check-list">
+            {page.whatToCheckFirst.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      )}
+
+      {hasSources && (
+        <section class="section-block evidence-block">
+          <h2>Evidence base</h2>
+          <p>{page.evidenceIntro}</p>
+
+          <div class="source-list">
+            {page.sources.map((source) => (
+              <a class="source-card" href={source.url} rel="noopener noreferrer" target="_blank">
+                <h3>{source.label}</h3>
+                <p>{source.note}</p>
+                <span>View source →</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {hasInterpretation && (
+        <section class="section-block interpretation-card">
+          <h2>Ecommony interpretation</h2>
+          <p>{page.ecommonyInterpretation}</p>
+        </section>
+      )}
 
       <section class="section-block">
         <h2>How Ecommony helps</h2>
@@ -135,10 +220,11 @@ const faqSchema = {
     </main>
 
     <aside class="side-card">
-      <h2>Talk through the problem</h2>
+      <h2>{hasProblemSections ? 'Need the tracking checked?' : 'Talk through the problem'}</h2>
       <p>
-        If you need London-based ecommerce, SEO, Shopify, GA4 or technical growth support,
-        start with a short enquiry.
+        {hasProblemSections
+          ? 'If GA4, GTM, Shopify or paid media reporting no longer looks reliable, start with a focused tracking review.'
+          : 'If you need London-based ecommerce, SEO, Shopify, GA4 or technical growth support, start with a short enquiry.'}
       </p>
       <a class="btn primary" href="/contact/">Contact Ecommony</a>
 
@@ -155,13 +241,38 @@ const faqSchema = {
 </IntentPageLayout>
 
 <style>
-  .location-link-grid {
+  .summary-card {
+    margin: 0 0 22px;
+    padding: 22px 24px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255,255,255,.94);
+    box-shadow: var(--shadow2);
+    max-width: 900px;
+  }
+
+  .summary-card p {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(18px, 1.8vw, 21px);
+    line-height: 1.65;
+    letter-spacing: -.15px;
+  }
+
+  .location-link-grid,
+  .source-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
   }
 
-  .location-link-card {
+  .source-list {
+    margin-top: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .location-link-card,
+  .source-card {
     display: block;
     padding: 18px;
     border: 1px solid var(--line);
@@ -170,27 +281,42 @@ const faqSchema = {
     box-shadow: var(--shadow2);
   }
 
-  .location-link-card h3 {
+  .location-link-card h3,
+  .source-card h3 {
     margin: 0 0 8px;
     font-size: 20px;
     line-height: 1.18;
     letter-spacing: -.25px;
   }
 
-  .location-link-card p {
+  .location-link-card p,
+  .source-card p {
     margin: 0 0 12px;
     color: var(--muted);
     font-size: 15px;
     line-height: 1.55;
   }
 
-  .location-link-card span {
+  .location-link-card span,
+  .source-card span {
     font-weight: 800;
   }
 
+  .interpretation-card {
+    padding: 20px;
+    border: 1px solid rgba(197,138,45,.24);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(197,138,45,.08), rgba(27,43,68,.06)), #fff;
+  }
+
   @media (max-width: 900px) {
-    .location-link-grid {
+    .location-link-grid,
+    .source-list {
       grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+      padding: 18px;
     }
   }
 </style>
