@@ -14,14 +14,16 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFJDYQHSPM"></script>
     <!-- Google tag (gtag.js) -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BFJDYQHSPM');
+      window.gtag = function(){window.dataLayer.push(arguments);}
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-BFJDYQHSPM');
     </script>
+
     <title>{seoTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={seoCanonical} />
@@ -69,7 +71,8 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
         background:
           radial-gradient(1100px 700px at 10% 0%, rgba(197,138,45,.10), transparent 64%),
           radial-gradient(900px 620px at 90% 8%, rgba(27,43,68,.10), transparent 62%),
-          radial-gradient(1000px 700px at 50% 100%, rgba(197,138,45,.05), transparent 68%), linear-gradient(180deg,#f7f3ec 0%,#f3eee7 100%);
+          radial-gradient(1000px 700px at 50% 100%, rgba(197,138,45,.05), transparent 68%),
+          linear-gradient(180deg,#f7f3ec 0%,#f3eee7 100%);
         background-repeat:no-repeat;
       }
 
@@ -130,6 +133,45 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
         color:var(--text);
       }
 
+      .mobile-menu{
+        display:none;
+      }
+
+      .mobile-menu summary{
+        list-style:none;
+      }
+
+      .mobile-menu summary::-webkit-details-marker{
+        display:none;
+      }
+
+      .mobile-menu__panel{
+        position:absolute;
+        right:24px;
+        top:78px;
+        z-index:20;
+        display:grid;
+        gap:8px;
+        min-width:220px;
+        padding:12px;
+        border:1px solid var(--line);
+        border-radius:16px;
+        background:rgba(255,255,255,.96);
+        box-shadow:var(--shadow);
+      }
+
+      .mobile-menu__panel a{
+        padding:10px 12px;
+        border-radius:12px;
+        color:var(--muted);
+        font-weight:700;
+      }
+
+      .mobile-menu__panel a:hover{
+        background:rgba(11,18,32,.04);
+        color:var(--text);
+      }
+
       .btn{
         display:inline-flex;
         align-items:center;
@@ -154,28 +196,20 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
 
       .breadcrumb{
         display:flex;
-        align-items:center;
         flex-wrap:wrap;
         gap:8px;
-        margin:4px 0 10px;
+        align-items:center;
+        margin:8px 0 18px;
         color:var(--muted2);
-        font-size:13px;
-        line-height:1.4;
+        font-size:14px;
       }
 
       .breadcrumb a{
         color:var(--muted);
-        text-decoration:underline;
-        text-underline-offset:3px;
       }
 
       .breadcrumb a:hover{
         color:var(--text);
-      }
-
-      .breadcrumb span:last-child{
-        color:var(--text);
-        font-weight:700;
       }
 
       .intent-hero{
@@ -341,12 +375,45 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
       }
 
       @media (max-width: 900px){
-        .navlinks{display:none}
+        .nav{
+          position:relative;
+          gap:10px;
+        }
+
+        .navlinks{
+          display:none;
+        }
+
+        .mobile-menu{
+          display:block;
+        }
+
+        .nav > .btn.primary{
+          padding:11px 13px;
+        }
+
         h1{max-width:none}
         .intent-grid{grid-template-columns:1fr}
         .side-card{position:static}
         .foot{grid-template-columns:1fr}
         .footer-actions{justify-content:flex-start}
+      }
+
+      @media (max-width: 520px){
+        .wrap{
+          padding:18px;
+        }
+
+        .logo span:last-child{
+          display:none;
+        }
+
+        .mobile-menu__panel{
+          right:0;
+          left:0;
+          top:70px;
+          min-width:0;
+        }
       }
     </style>
   </head>
@@ -368,6 +435,18 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
           <a href="/industries/">Industries</a>
           <a href="/blog/">Blog</a>
         </nav>
+
+        <details class="mobile-menu">
+          <summary class="btn" aria-label="Open navigation menu">Menu</summary>
+          <nav class="mobile-menu__panel" aria-label="Mobile primary">
+            <a href="https://ecommony.com/">Home</a>
+            <a href="/services/">Services</a>
+            <a href="/guides/">Guides</a>
+            <a href="/industries/">Industries</a>
+            <a href="/blog/">Blog</a>
+            <a href="/ecommerce-consultant-london/">London support</a>
+          </nav>
+        </details>
 
         <a class="btn primary" href="/contact/">Contact</a>
       </header>
