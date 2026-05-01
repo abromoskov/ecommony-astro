@@ -59,13 +59,14 @@ const fullImage = new URL(finalImage, site).toString();
 <meta name="twitter:image" content={fullImage} />
     <style is:global>
       :root{
-        --bg:#ffffff;
-        --text:#0b1220;
-        --muted:#4b5568;
-        --muted2:#6b7280;
-        --line:rgba(11,18,32,.10);
-        --brand:#2563eb;
-        --brand2:#10b981;
+        --bg:#f5f1ea;
+        --text:#101826;
+        --muted:#5f6775;
+        --muted2:#7b8494;
+        --line:rgba(16,24,38,.10);
+        --brand:#c58a2d;
+        --brand2:#1b2b44;
+        --accent:#1b2b44;
         --shadow:0 16px 44px rgba(11,18,32,.10);
         --shadow2:0 10px 28px rgba(11,18,32,.08);
         --radius:18px;
@@ -90,9 +91,10 @@ const fullImage = new URL(finalImage, site).toString();
         pointer-events:none;
         z-index:-1;
         background:
-          radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,.10), transparent 55%),
-          radial-gradient(900px 520px at 85% 0%, rgba(16,185,129,.10), transparent 55%),
-          radial-gradient(900px 520px at 50% 100%, rgba(37,99,235,.06), transparent 60%);
+          radial-gradient(1100px 700px at 10% 0%, rgba(197,138,45,.10), transparent 64%),
+          radial-gradient(900px 620px at 90% 8%, rgba(27,43,68,.10), transparent 62%),
+          radial-gradient(1000px 700px at 50% 100%, rgba(197,138,45,.05), transparent 68%),
+          linear-gradient(180deg,#f7f3ec 0%,#f3eee7 100%);
         background-repeat:no-repeat;
       }
 
@@ -529,6 +531,15 @@ const fullImage = new URL(finalImage, site).toString();
         .foot{grid-template-columns:1fr}
         .footer-actions{justify-content:flex-start}
         .content-card{padding:18px}
+      }
+
+      @media (max-width: 700px){
+        .blog-index-card{
+          padding:0;
+          border:0;
+          box-shadow:none;
+          background:transparent;
+        }
       }
 
       @media (max-width: 520px){
