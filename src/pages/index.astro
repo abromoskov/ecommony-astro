@@ -6,10 +6,10 @@
 
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.gtag = function(){window.dataLayer.push(arguments);}
+  window.gtag('js', new Date());
 
-  gtag('config', 'G-BFJDYQHSPM');
+  window.gtag('config', 'G-BFJDYQHSPM');
 </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -19,15 +19,13 @@
   <meta name="description" content="Stop losing revenue to slow pages, weak conversion journeys and broken tracking. Run a free competitor-benchmarked website diagnosis for Shopify, Magento and WordPress." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ecommony.com/" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   <meta property="og:title" content="Stop Losing Revenue to Technical Drag | Ecommony Insight Engine" />
   <meta property="og:description" content="Benchmark your site against competitors and uncover the speed, conversion, SEO and tracking issues generic tools miss." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ecommony.com/" />
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <link rel="stylesheet" href="/css/ecommony.min.css">
  
@@ -852,8 +850,9 @@
   <script>
     window.trackEcommonyEvent = function(eventName, params = {}) {
       if (typeof window.gtag === "function") {
-        window.gtag(eventName, {
+        window.gtag("event", eventName, {
           event_category: "engagement",
+          transport_type: "beacon",
           ...params
         });
       }
@@ -1088,10 +1087,12 @@
           const data = await res.json();
 
           if (data.ok) {
-            window.trackEcommonyEvent("contact_form_submit", {
-              form_id: "contactForm2",
-              form_name: "Contact form"
-            });
+            window.setTimeout(() => {
+              window.trackEcommonyEvent("contact_form_submit", {
+                form_id: "contactForm2",
+                form_name: "Contact form"
+              });
+            }, 250);
             contactMsg.textContent = "Thanks — I’ll get back to you shortly.";
             contactForm2.reset();
           } else {
