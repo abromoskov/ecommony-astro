@@ -3,30 +3,33 @@ import IntentPageLayout from '../../layouts/IntentPageLayout.astro';
 import { locationPages, getLocationPagePath } from '../../data/locationPages';
 import { problemPages, getProblemPagePath } from '../../data/problemPages';
 
-function getAllPages() {
+export function getStaticPaths() {
   return [
     ...locationPages.map((page) => ({
-      ...page,
-      pageKind: 'location',
-      path: getLocationPagePath(page),
+      params: {
+        slug: page.slug,
+      },
+      props: {
+        page: {
+          ...page,
+          pageKind: 'location',
+          path: getLocationPagePath(page),
+        },
+      },
     })),
     ...problemPages.map((page) => ({
-      ...page,
-      pageKind: 'problem',
-      path: getProblemPagePath(page),
+      params: {
+        slug: page.slug,
+      },
+      props: {
+        page: {
+          ...page,
+          pageKind: 'problem',
+          path: getProblemPagePath(page),
+        },
+      },
     })),
   ];
-}
-
-export function getStaticPaths() {
-  return getAllPages().map((page) => ({
-    params: {
-      slug: page.slug,
-    },
-    props: {
-      page,
-    },
-  }));
 }
 
 const { page } = Astro.props;
