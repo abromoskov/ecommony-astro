@@ -145,9 +145,49 @@ const fullImage = new URL(finalImage, site).toString();
         color:var(--muted);
       }
 
-      .navlinks a:hover{
-        background:rgba(11,18,32,.04);
+      .mobile-menu{
+        display:none;
+      }
+
+      .mobile-menu summary{
+        list-style:none;
+      }
+
+      .mobile-menu summary::-webkit-details-marker{
+        display:none;
+      }
+
+      .mobile-menu__panel{
+        position:absolute;
+        right:24px;
+        top:78px;
+        z-index:20;
+        display:grid;
+        gap:10px;
+        min-width:260px;
+        padding:14px;
+        border:1px solid var(--line);
+        border-radius:16px;
+        background:#fff;
+        box-shadow:var(--shadow);
+      }
+
+      .mobile-menu__panel a{
+        display:flex;
+        align-items:center;
+        width:100%;
+        min-height:46px;
+        padding:12px 14px;
+        border:1px solid var(--line);
+        border-radius:12px;
+        background:#fff;
         color:var(--text);
+        font-weight:700;
+        line-height:1.25;
+      }
+
+      .mobile-menu__panel a:hover{
+        background:rgba(11,18,32,.04);
       }
 
       .btn{
@@ -467,11 +507,42 @@ const fullImage = new URL(finalImage, site).toString();
       }
 
       @media (max-width: 900px){
-        .navlinks{display:none}
+        .nav{
+          position:relative;
+          gap:10px;
+        }
+
+        .navlinks{
+          display:none;
+        }
+
+        .mobile-menu{
+          display:block;
+          margin-left:auto;
+        }
+
+        .nav > .btn.primary{
+          display:none;
+        }
+
         h1{max-width:none}
         .foot{grid-template-columns:1fr}
         .footer-actions{justify-content:flex-start}
         .content-card{padding:18px}
+      }
+
+      @media (max-width: 520px){
+        .wrap{
+          padding:18px;
+        }
+
+        .mobile-menu__panel{
+          right:0;
+          left:auto;
+          top:70px;
+          width:min(88vw,320px);
+          min-width:280px;
+        }
       }
     </style>
   </head>
@@ -493,6 +564,18 @@ const fullImage = new URL(finalImage, site).toString();
           <a href="/blog/">Blog</a>
           <a href="/contact/">Contact</a>
         </nav>
+
+        <details class="mobile-menu">
+          <summary class="btn" aria-label="Open navigation menu">Menu</summary>
+          <nav class="mobile-menu__panel" aria-label="Mobile primary">
+            <a href="https://ecommony.com/">Home</a>
+            <a href="/#platforms">Platforms</a>
+            <a href="/services/">Services</a>
+            <a href="/blog/">Blog</a>
+            <a href="/ecommerce-consultant-london/">London support</a>
+            <a href="/contact/">Contact</a>
+          </nav>
+        </details>
 
         <a class="btn primary" href="/contact/">Contact</a>
       </header>
