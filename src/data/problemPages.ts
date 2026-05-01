@@ -347,6 +347,112 @@ faqs: [
           'Sometimes, but not blindly. Apps should be reviewed by commercial value and performance cost. The aim is to remove, replace or limit the load of apps that slow the customer journey without supporting revenue.'
       }
     ]
+  },
+    {
+    slug: 'shopify-conversion-rate-low',
+    eyebrow: 'Shopify conversion rate low',
+    title: 'Shopify conversion rate low? What usually causes it and what to check first',
+    description:
+      'A practical guide for Shopify teams when traffic is coming in but product pages, collection journeys or checkout paths are not converting enough customers.',
+    serviceType: 'Shopify conversion rate optimisation',
+    summary:
+      'A low Shopify conversion rate is usually caused by a mix of unclear product value, weak trust signals, slow journeys, poor merchandising, checkout friction and unreliable tracking. The commercial risk is spending more on traffic while the store continues to lose customers who were already interested enough to visit.',
+    introTitle: 'When Shopify traffic is not turning into enough sales',
+    intro:
+      'Shopify conversion problems are rarely caused by one isolated issue. Product pages, collection navigation, mobile usability, pricing clarity, delivery information, reviews, payment options, speed and tracking all shape whether a visitor becomes a customer. The first step is to identify where confidence, clarity or momentum is being lost.',
+    symptoms: [
+      'Traffic volume is reasonable, but sales or revenue are weaker than expected.',
+      'Product pages receive visits but add-to-cart rate is low.',
+      'Users browse collections but do not progress confidently to product pages or checkout.',
+      'Paid traffic costs are rising because the store is not converting enough visitors.',
+      'The team is considering a redesign without clear evidence of what is actually blocking sales.'
+    ],
+    whatBreaks: [
+      'Product pages do not explain value, benefits, delivery, returns or trust clearly enough.',
+      'Collection pages make it hard for users to compare, filter or choose products confidently.',
+      'Mobile journeys are slowed or interrupted by apps, pop-ups, widgets or layout issues.',
+      'Reviews, guarantees, payment options, shipping thresholds or credibility signals are weak or hidden.',
+      'GA4, Shopify and paid media tracking do not clearly show where users hesitate or drop off.'
+    ],
+    whatToCheckFirst: [
+      'Review product page clarity: proposition, imagery, benefits, price, delivery, returns and social proof.',
+      'Check mobile collection-to-product journeys for friction, hesitation and unnecessary steps.',
+      'Compare add-to-cart, checkout-start and purchase rates across devices and traffic sources.',
+      'Look for trust gaps around reviews, payment methods, guarantees, customer support and delivery information.',
+      'Confirm tracking is reliable enough to identify where the conversion journey is leaking.'
+    ],
+    evidenceIntro:
+      'This page is based on practical Shopify CRO diagnosis and established guidance covering ecommerce user experience, Core Web Vitals, mobile usability, product-page trust, checkout behaviour and analytics-based conversion measurement.',
+    sources: [
+      {
+        label: 'Google Core Web Vitals',
+        url: 'https://web.dev/articles/vitals',
+        note: 'Explains user-experience metrics that can affect loading, responsiveness and visual stability during conversion journeys.'
+      },
+      {
+        label: 'Google Analytics ecommerce events',
+        url: 'https://developers.google.com/analytics/devguides/collection/ga4/ecommerce',
+        note: 'Defines ecommerce events used to measure product views, basket actions, checkout progress and purchases.'
+      },
+      {
+        label: 'Baymard Institute ecommerce UX research',
+        url: 'https://baymard.com/research',
+        note: 'Provides ecommerce UX research covering product pages, checkout, mobile usability and customer decision-making.'
+      },
+      {
+        label: 'Shopify conversion rate optimisation guidance',
+        url: 'https://www.shopify.com/uk/blog/conversion-rate-optimization',
+        note: 'Explains common Shopify CRO concepts and areas that influence ecommerce conversion.'
+      },
+      {
+        label: 'Google mobile site speed guidance',
+        url: 'https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/',
+        note: 'Highlights the relationship between mobile speed, user behaviour and commercial performance.'
+      }
+    ],
+    ecommonyInterpretation:
+      'The most useful Shopify CRO work is not guessing which design change might help. It is diagnosing where buying confidence breaks down, which friction points affect the most valuable journeys, and which fixes are likely to improve revenue without creating unnecessary development or redesign work.',
+    help: [
+      'Audit product pages, collection journeys, mobile UX and checkout paths for conversion friction.',
+      'Identify trust gaps around reviews, delivery, returns, payment options and proposition clarity.',
+      'Review Shopify speed, apps and scripts where they affect the buying journey.',
+      'Check GA4 and Shopify data to understand where visitors drop off.',
+      'Create a prioritised CRO action plan based on likely commercial impact.'
+    ],
+    relatedLinks: [
+      {
+        label: 'Shopify CRO audit',
+        href: '/services/shopify-cro-audit/',
+        description: 'Understand where Shopify visitors drop off, hesitate or fail to progress.'
+      },
+      {
+        label: 'Shopify conversion rate optimisation guide',
+        href: '/guides/shopify-conversion-rate-optimisation/',
+        description: 'Learn what to check before changing a Shopify theme or redesigning the store.'
+      },
+      {
+        label: 'Shopify site slow',
+        href: '/shopify-site-slow/',
+        description: 'Understand how slow Shopify journeys can reduce conversion and paid media efficiency.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Why is my Shopify conversion rate low?',
+        answer:
+          'A low Shopify conversion rate can be caused by unclear product value, weak trust signals, slow mobile journeys, poor merchandising, checkout friction, pricing concerns or unreliable tracking. The cause is usually a combination of issues rather than one single problem.'
+      },
+      {
+        question: 'Should I redesign my Shopify store to improve conversion?',
+        answer:
+          'Not immediately. A redesign can help, but it should follow diagnosis. Many conversion problems can be improved by fixing product-page clarity, trust signals, speed, collection journeys, checkout friction and tracking before rebuilding the whole store.'
+      },
+      {
+        question: 'What should I check first if Shopify traffic is not converting?',
+        answer:
+          'Start with product-page clarity, mobile usability, add-to-cart behaviour, checkout progression, trust signals and tracking accuracy. These areas usually reveal whether the problem is persuasion, usability, speed, offer clarity or measurement.'
+      }
+    ]
   }
 ];
 
