@@ -1,0 +1,533 @@
+---
+const {
+  title = 'Ecommony Blog',
+  description = 'Technical ecommerce articles on Shopify, Magento, WordPress, SEO, tracking and site speed.',
+  type = 'article',
+  image = '',
+  excerpt = '',
+  references = []
+} = Astro.props;
+
+const siteUrl = 'https://ecommony.com';
+
+const seoTitle = title.includes('Ecommony') ? title : `${title} | Ecommony`;
+
+// Clean fallback logic (safe + predictable)
+const seoDescription =
+  description && description.length > 110
+    ? description
+    : `${title} — what’s causing it, how it impacts performance and what to check first.`;
+
+
+const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
+
+const { site } = Astro;
+
+const fallbackImage = '/images/blog-default.jpg';
+const finalImage = image || fallbackImage;
+
+const fullImage = new URL(finalImage, site).toString();
+---
+
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFJDYQHSPM"></script>
+    <!-- Google tag (gtag.js) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BFJDYQHSPM');
+    </script>
+    <title>{seoTitle}</title>
+<meta name="description" content={seoDescription} />
+<link rel="canonical" href={seoCanonical} />
+<meta name="robots" content="index,follow" />
+<meta property="og:image" content={fullImage} />
+<meta property="og:title" content={seoTitle} />
+<meta property="og:description" content={seoDescription} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={seoCanonical} />
+<meta property="og:site_name" content="Ecommony" />
+<meta name="twitter:label1" content="Type" />
+<meta name="twitter:data1" content={type} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={seoTitle} />
+<meta name="twitter:description" content={seoDescription} />
+<meta name="twitter:image" content={fullImage} />
+    <style is:global>
+      :root{
+        --bg:#ffffff;
+        --text:#0b1220;
+        --muted:#4b5568;
+        --muted2:#6b7280;
+        --line:rgba(11,18,32,.10);
+        --brand:#2563eb;
+        --brand2:#10b981;
+        --shadow:0 16px 44px rgba(11,18,32,.10);
+        --shadow2:0 10px 28px rgba(11,18,32,.08);
+        --radius:18px;
+        --max:1120px;
+      }
+
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{
+        margin:0;
+        font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+        color:var(--text);
+        background:var(--bg);
+        line-height:1.65;
+        position:relative;
+      }
+
+      body::before{
+        content:"";
+        position:fixed;
+        inset:0;
+        pointer-events:none;
+        z-index:-1;
+        background:
+          radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,.10), transparent 55%),
+          radial-gradient(900px 520px at 85% 0%, rgba(16,185,129,.10), transparent 55%),
+          radial-gradient(900px 520px at 50% 100%, rgba(37,99,235,.06), transparent 60%);
+        background-repeat:no-repeat;
+      }
+
+      a{color:inherit;text-decoration:none}
+      img{max-width:100%;height:auto;display:block}
+
+      .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+
+      .nav{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        padding:14px 0 22px;
+      }
+
+      .logo{
+        display:flex;
+        gap:10px;
+        align-items:center;
+        font-weight:800;
+        letter-spacing:.2px;
+      }
+
+      .mark{
+        width:34px;
+        height:34px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        flex:0 0 auto;
+      }
+
+      .mark img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+      }
+
+      .navlinks{
+        display:flex;
+        gap:10px;
+        align-items:center;
+        flex-wrap:wrap;
+      }
+
+      .navlinks a{
+        padding:10px 12px;
+        border-radius:12px;
+        color:var(--muted);
+      }
+
+      .navlinks a:hover{
+        background:rgba(11,18,32,.04);
+        color:var(--text);
+      }
+
+      .btn{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        padding:12px 16px;
+        border-radius:14px;
+        border:1px solid var(--line);
+        background:#fff;
+        color:var(--text);
+        box-shadow:var(--shadow2);
+        transition:transform .08s ease, box-shadow .2s ease, border-color .2s ease;
+        cursor:pointer;
+        font-weight:700;
+      }
+
+      .btn:hover{
+        border-color:rgba(11,18,32,.18);
+        box-shadow:0 14px 36px rgba(11,18,32,.10);
+      }
+
+      .btn.primary{
+        background:linear-gradient(135deg,rgba(37,99,235,1),rgba(16,185,129,1));
+        border-color:transparent;
+        color:#fff;
+        box-shadow:0 18px 44px rgba(37,99,235,.18);
+      }
+
+      .hero{
+        padding:10px 0 22px;
+      }
+
+      .pill{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        padding:8px 12px;
+        border:1px solid var(--line);
+        border-radius:999px;
+        background:rgba(255,255,255,.78);
+        color:var(--muted);
+        font-size:13px;
+        box-shadow:var(--shadow2);
+      }
+
+      h1{
+        margin:16px 0 10px;
+        font-size:clamp(34px,4.6vw,56px);
+        line-height:1.04;
+        letter-spacing:-1px;
+        max-width:14ch;
+      }
+
+      .sub{
+        font-size:clamp(17px,1.8vw,21px);
+        color:var(--muted);
+        max-width:64ch;
+        margin:0;
+      }
+
+      .content-card{
+        background:rgba(255,255,255,.90);
+        border:1px solid var(--line);
+        border-radius:var(--radius);
+        box-shadow:var(--shadow);
+        padding:22px;
+      }
+
+      .article-list{
+        list-style:none;
+        padding:0;
+        margin:0;
+        display:grid;
+        gap:16px;
+      }
+
+      .article-item{
+        padding:18px;
+        border:1px solid var(--line);
+        border-radius:16px;
+        background:rgba(255,255,255,.86);
+        box-shadow:var(--shadow2);
+      }
+
+      .article-item h2{
+        margin:0 0 8px;
+        font-size:24px;
+        line-height:1.2;
+        letter-spacing:-.4px;
+      }
+
+      .article-item p{
+        margin:0 0 8px;
+        color:var(--muted);
+      }
+
+      .meta{
+        color:var(--muted2);
+        font-size:14px;
+      }
+      .prose{
+        max-width:780px;
+        font-size:20px;
+        line-height:1.82;
+      }
+
+      .prose h1{
+        max-width:none;
+        font-size:clamp(36px,4.2vw,52px);
+        margin:0 0 12px;
+        line-height:1.06;
+        letter-spacing:-.8px;
+      }
+
+      .prose h2{
+        margin:40px 0 14px;
+        font-size:clamp(28px,2.4vw,34px);
+        line-height:1.14;
+        letter-spacing:-.4px;
+      }
+
+    .prose h3 {
+      margin-top: 1.5rem;
+      margin-left: 0.25rem;
+      font-size: 2.05rem;
+      color: #444;
+    }
+
+    .cta-link {
+  color: #0a66ff;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.cta-link:hover {
+  text-decoration: none;
+}
+
+      .prose p{
+        margin:0 0 18px;
+        color:var(--text);
+        font-size:20px;
+        line-height:1.82;
+      }
+
+      .prose ul{
+        margin:0 0 22px 0;
+        padding-left:24px;
+      }
+
+      .prose li{
+        margin:0 0 10px;
+        font-size:19px;
+        line-height:1.75;
+        color:var(--text);
+      }
+
+      .prose hr{
+        border:0;
+        border-top:1px solid var(--line);
+        margin:30px 0;
+      }
+
+      .prose strong{
+        color:var(--text);
+      }
+
+      .prose blockquote{
+        margin:28px 0;
+        padding:18px 20px;
+        border-left:4px solid var(--brand);
+        background:rgba(255,255,255,.72);
+        border-radius:14px;
+        box-shadow:var(--shadow2);
+      }
+
+      @media (max-width: 900px){
+        .prose{
+          max-width:none;
+          font-size:18px;
+          line-height:1.75;
+        }
+
+        .prose p,
+        .prose li{
+          font-size:18px;
+          line-height:1.75;
+        }
+
+        .prose h2{
+          font-size:28px;
+        }
+
+        .prose h3{
+          font-size:22px;
+        }
+      }
+   
+      .eyebrow{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        color:var(--muted2);
+        font-size:13px;
+        font-weight:700;
+        text-transform:uppercase;
+        letter-spacing:.08em;
+        margin-bottom:12px;
+      }
+
+      .article-header{
+        margin-bottom:26px;
+        padding-bottom:18px;
+        border-bottom:1px solid var(--line);
+      }
+
+      .article-header .meta{
+        margin-top:10px;
+      }
+
+      .hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+
+      .related-commercial-card{
+        margin-top:34px;
+        padding:24px;
+        border-radius:20px;
+        background:#fff;
+        border:1px solid var(--line);
+        box-shadow:var(--shadow2);
+      }
+
+      .related-commercial-card h2{
+        margin:8px 0 10px;
+        font-size:clamp(24px,2.4vw,34px);
+        line-height:1.12;
+        letter-spacing:-.5px;
+      }
+
+      .related-commercial-card p{
+        margin:0 0 14px;
+        color:var(--muted);
+        font-size:18px;
+      }
+
+      .cta-band{
+        margin-top:34px;
+        padding:22px;
+        background:linear-gradient(135deg, rgba(37,99,235,.06), rgba(16,185,129,.08));
+        border:1px solid var(--line);
+        border-radius:18px;
+        box-shadow:var(--shadow2);
+      }
+
+      .cta-band h3{
+        margin:0 0 8px;
+        font-size:22px;
+      }
+
+      .cta-band p{
+        margin:0 0 14px;
+        color:var(--muted);
+      }
+
+      .references {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.references h3 {
+  margin-bottom: 0.75rem;
+}
+
+.references ul {
+  padding-left: 1rem;
+}
+
+.references li {
+  margin-bottom: 0.5rem;
+}
+
+      footer{
+        padding:30px 0 44px;
+        color:var(--muted);
+        font-size:13px;
+      }
+
+      .foot{
+        display:grid;
+        grid-template-columns:1.1fr auto;
+        gap:18px;
+        align-items:start;
+        border-top:1px solid var(--line);
+        padding-top:20px;
+      }
+
+      .footer-brand strong{
+        display:block;
+        color:var(--text);
+        margin-bottom:6px;
+        font-size:15px;
+      }
+
+      .footer-actions{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        justify-content:flex-end;
+      }
+
+      @media (max-width: 900px){
+        .navlinks{display:none}
+        h1{max-width:none}
+        .foot{grid-template-columns:1fr}
+        .footer-actions{justify-content:flex-start}
+        .content-card{padding:18px}
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header class="nav">
+        <a class="logo" href="https://ecommony.com" aria-label="Ecommony home">
+          <span class="mark" aria-hidden="true">
+            <img src="/assets/ecommony-mark.png" alt="" />
+          </span>
+          <span>Ecommony</span>
+        </a>
+
+        <nav class="navlinks" aria-label="Primary">
+          <a href="https://ecommony.com/">Home</a>
+          <a href="/#platforms">Platforms</a>
+          <a href="/services/">Services</a>
+          <a href="/blog/">Blog</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+
+        <a class="btn primary" href="/contact/">Contact</a>
+      </header>
+
+      <slot />
+     
+
+   {references.length > 0 && (
+  <section class="references">
+    <h3>References</h3>
+    <ul>
+      {references.map((ref) => (
+        <li>
+          <a href={ref.url} target="_blank" rel="noopener noreferrer">
+            {ref.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+      <footer>
+        <div class="foot">
+          <div class="footer-brand">
+            <strong>Ecommony</strong>
+            <span>Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.</span>
+          </div>
+
+          <div class="footer-actions">
+            <a class="btn" href="https://ecommony.com/#start-audit">Start free audit</a>
+            <a class="btn primary" href="/contact/">Contact</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

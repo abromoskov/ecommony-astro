@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const posts = await getCollection('blog');
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BlogLayout
+  title="Ecommony Blog"
+  description="Technical ecommerce articles on Shopify, Magento, WordPress, SEO, tracking and speed."
+>
+  <section class="hero">
+    <span class="pill">Shopify • Magento • WordPress • SEO • Tracking • Speed</span>
+    <h1>Technical articles for teams that want websites to perform better.</h1>
+    <p class="sub">
+      Practical analysis on ecommerce speed, conversion, SEO and tracking —
+      written to explain what is happening, why it matters and what to look at first.
+    </p>
+  </section>
+
+  <section class="content-card">
+    <div class="eyebrow">Latest articles</div>
+
+    <ul class="article-list">
+      {sortedPosts.map((post) => {
+        const parts = post.id.split('/');
+        const category = parts[0];
+        const slug = parts[parts.length - 1].replace(/\.mdx?$/, '');
+
+        return (
+          <li class="article-item">
+            <div class="meta">{category} • {post.data.date.toDateString()}</div>
+            <h2>
+              <a href={`/blog/${category}/${slug}/`}>
+                {post.data.title}
+              </a>
+            </h2>
+            <p>{post.data.description}</p>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+</BlogLayout>

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+*.log
+
+# Local backups
+*.bak
+*.bak-*
+*.backup
+*.old
+
+# OS/editor files
+.DS_Store
+.vscode/

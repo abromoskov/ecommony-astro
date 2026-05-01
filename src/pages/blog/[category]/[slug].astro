@@ -1,0 +1,195 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map((post) => {
+    const parts = post.id.split('/');
+    const category = parts[0];
+    const slug = parts[parts.length - 1].replace(/\.mdx?$/, '');
+
+    return {
+      params: { category, slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const category = post.id.split('/')[0];
+
+const currentTitle = post.data.title.toLowerCase();
+
+const relatedPosts = (await getCollection('blog'))
+  .filter((p) => p.id !== post.id)
+  .map((p) => {
+    const pCategory = p.id.split('/')[0];
+
+    // basic keyword match score
+    const stopWords = ['the', 'and', 'for', 'with', 'why', 'how', 'what', 'your', 'over', 'time'];
+
+const currentWords = currentTitle
+  .split(' ')
+  .filter((w) => !stopWords.includes(w) && w.length > 3);
+
+const score = p.data.title
+  .toLowerCase()
+  .split(' ')
+  .filter((word) => currentWords.includes(word)).length;
+
+    return {
+      ...p,
+      score,
+      sameCategory: pCategory === category,
+    };
+  })
+  .sort((a, b) => {
+    // priority:
+    // 1. same category
+    // 2. keyword overlap
+    // 3. newest
+    if (a.sameCategory !== b.sameCategory) {
+      return b.sameCategory - a.sameCategory;
+    }
+
+    if (a.score !== b.score) {
+      return b.score - a.score;
+    }
+
+    return b.data.date.getTime() - a.data.date.getTime();
+  })
+  .slice(0, 3);
+
+const postSlug = post.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+
+const commercialLinks = [
+  {
+    match: () => category === 'tracking' || postSlug.includes('tracking') || postSlug.includes('pixels') || postSlug.includes('analytics') || postSlug.includes('checkout-extensibility'),
+    eyebrow: 'Related service',
+    title: 'GA4 ecommerce tracking audit',
+    description:
+      'Find missing events, duplicated conversions, checkout tracking gaps and unreliable paid media signals before they distort growth decisions.',
+    href: '/services/ga4-ecommerce-tracking-audit/',
+    linkText: 'Review GA4 tracking support →',
+  },
+  {
+    match: () => postSlug.includes('server-side') || postSlug.includes('gtm'),
+    eyebrow: 'Related guide',
+    title: 'Server-side tracking for ecommerce',
+    description:
+      'Understand when server-side tracking helps, what it can break and how to balance data quality, latency and consent.',
+    href: '/guides/server-side-tracking-for-ecommerce/',
+    linkText: 'Read the server-side tracking guide →',
+  },
+  {
+    match: () => category === 'seo' || postSlug.includes('seo') || postSlug.includes('google') || postSlug.includes('structured-data') || postSlug.includes('merchant-center'),
+    eyebrow: 'Related guide',
+    title: 'Technical SEO for ecommerce',
+    description:
+      'Diagnose crawlability, indexation, metadata, structured data, internal linking and page quality issues that limit qualified organic growth.',
+    href: '/guides/technical-seo-for-ecommerce/',
+    linkText: 'Read the technical SEO guide →',
+  },
+  {
+    match: () => category === 'shopify' || postSlug.includes('shopify') || postSlug.includes('apps') || postSlug.includes('performance'),
+    eyebrow: 'Related service',
+    title: 'Shopify speed optimisation',
+    description:
+      'Identify the apps, scripts, theme changes and front-end issues slowing mobile journeys and weakening conversion.',
+    href: '/services/shopify-speed-optimisation/',
+    linkText: 'Review Shopify speed support →',
+  },
+];
+
+const relatedCommercialPage =
+  commercialLinks.find((item) => item.match()) || {
+    eyebrow: 'Related service',
+    title: 'Ecommerce conversion audit',
+    description:
+      'Understand where trust, product discovery, offer clarity, speed or tracking issues are limiting revenue.',
+    href: '/services/ecommerce-conversion-audit/',
+    linkText: 'Review ecommerce conversion audit →',
+  };
+---
+
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  excerpt={post.data.excerpt}
+  references={post.data.references}
+  image={post.data.image}
+>
+  <div class="content-card">
+    <article class="prose">
+      <div class="article-header">
+        <div class="eyebrow">{post.id.split('/')[0]}</div>
+       <h1>{post.data.title}</h1>
+<div class="meta">
+  {post.data.date.toDateString()} • Nigel Abramow
+</div>
+<div class="blog-hero">
+  <img 
+    src={post.data.image || '/images/blog-default.jpg'} 
+    alt={post.data.title}
+    class="hero-image"
+    loading="eager"
+    fetchpriority="high"
+  />
+</div>
+
+      </div>
+      <div>{post.data.excerpt && (
+  <p class="sub">{post.data.excerpt}</p>
+)}</div>
+      <Content />
+     
+      <div class="related-commercial-card">
+        <div class="eyebrow">{relatedCommercialPage.eyebrow}</div>
+        <h2>{relatedCommercialPage.title}</h2>
+        <p>{relatedCommercialPage.description}</p>
+        <a class="cta-link" href={relatedCommercialPage.href}>{relatedCommercialPage.linkText}</a>
+      </div>
+
+      <div class="cta-band">
+        <p class="cta-main">
+          If something here feels familiar, it’s usually possible to pinpoint what’s causing it quite quickly.
+        </p>
+
+        <p>
+          <a class="btn primary" href="/contact/">
+            Contact Nigel
+          </a>
+        </p>
+
+        You can <a href="https://ecommony.com/#start-audit" class="cta-link">start with a free site audit</a>
+        and we’ll map the issues and outline the biggest wins.
+      </div>
+      {relatedPosts.length > 0 && (
+  <div style="margin-top:40px;">
+    <div class="eyebrow">Related articles</div>
+
+    <ul class="article-list">
+      {relatedPosts.map((p) => {
+        const slug = p.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+
+        return (
+          <li class="article-item">
+            <h2 style="font-size:20px;">
+              <a href={`/blog/${p.id.split('/')[0]}/${slug}/`}>
+                {p.data.title}
+              </a>
+            </h2>
+            <p>{p.data.description}</p>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+)}
+    </article>
+  </div>
+</BlogLayout>

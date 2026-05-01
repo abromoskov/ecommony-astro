@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const categories = [...new Set(posts.map((post) => post.id.split('/')[0]))];
+
+  return categories.map((category) => ({
+    params: { category },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+
+const posts = (await getCollection('blog'))
+  .filter((post) => post.id.split('/')[0] === category)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BlogLayout
+  title={`Ecommony Blog — ${category}`}
+  description={`Technical ecommerce articles on ${category}.`}
+  <section class="hero">
+    <span class="pill">Category</span>
+    <h1 style="text-transform:capitalize;">{category}</h1>
+    <p class="sub">
+      Articles focused on {category}, written to explain what is happening, why it matters and what to look at first.
+    </p>
+  </section>
+
+  <section class="content-card">
+    <div class="eyebrow">Articles in {category}</div>
+
+    <ul class="article-list">
+      {posts.map((post) => {
+        const slug = post.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+
+        return (
+          <li class="article-item">
+            <div class="meta">{post.data.date.toDateString()}</div>
+            <h2>
+              <a href={`/blog/${category}/${slug}/`}>
+                {post.data.title}
+              </a>
+            </h2>
+            <p>{post.data.description}</p>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+</BlogLayout>

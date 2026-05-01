@@ -1,0 +1,474 @@
+---
+import IntentPageLayout from '../../layouts/IntentPageLayout.astro';
+import { intentPages, getIntentPagePath } from '../../data/intentPages';
+
+type HubSection = 'services' | 'guides' | 'industries';
+
+type HubGroup = {
+  title: string;
+  description: string;
+  slugs: string[];
+};
+
+
+
+export function getStaticPaths() {
+  const sectionLabels: Record<HubSection, {
+    eyebrow: string;
+    title: string;
+    description: string;
+    introTitle: string;
+    introCopy: string;
+    groups: HubGroup[];
+  }> = {
+  services: {
+    eyebrow: 'Ecommony services',
+    title: 'Ecommerce services for speed, SEO, conversion and tracking confidence',
+    description:
+      'Specialist ecommerce consulting services for Shopify, Magento, WordPress and growth teams that need to know what to fix first.',
+    introTitle: 'Find the commercial blocker before spending more on traffic',
+    introCopy:
+      'Most ecommerce underperformance is not caused by one isolated issue. Speed, tracking, SEO, product discovery, trust signals and conversion friction usually overlap. These services are designed to diagnose the constraint, prioritise what matters commercially and support practical implementation.',
+    groups: [
+      {
+        title: 'Conversion and customer journeys',
+        description:
+          'For sites getting traffic but not enough sales, enquiries or confident customer progression.',
+        slugs: [
+          'shopify-cro-audit',
+          'ecommerce-conversion-audit'
+        ]
+      },
+      {
+        title: 'Speed and technical performance',
+        description:
+          'For stores slowed down by apps, scripts, themes, extensions, templates or technical debt.',
+        slugs: [
+          'shopify-speed-optimisation',
+          'magento-speed-optimisation'
+        ]
+      },
+      {
+        title: 'SEO, tracking and measurement confidence',
+        description:
+          'For teams that need clearer organic visibility, cleaner GA4 data and more reliable reporting.',
+        slugs: [
+          'wordpress-technical-seo-audit',
+          'ga4-ecommerce-tracking-audit',
+          'ecommerce-tracking-cleanup'
+        ]
+      }
+    ]
+  },
+  guides: {
+    eyebrow: 'Ecommony guides',
+    title: 'Ecommerce guides for teams improving speed, SEO, conversion and tracking',
+    description:
+      'Practical ecommerce guides explaining what breaks, why it matters commercially and what to check first.',
+    introTitle: 'Practical diagnosis before redesigns, rebuilds or agency spend',
+    introCopy:
+      'These guides explain common ecommerce problems in plain commercial terms: what is usually happening, why it affects revenue and what to investigate before committing budget or development time.',
+    groups: [
+      {
+        title: 'Conversion and CRO guides',
+        description:
+          'Understand why visitors hesitate, where journeys leak revenue and what to fix before redesigning.',
+        slugs: [
+          'ecommerce-conversion-rate-optimisation',
+          'shopify-conversion-rate-optimisation'
+        ]
+      },
+      {
+        title: 'Speed and performance guides',
+        description:
+          'Diagnose the performance issues that slow mobile journeys, weaken UX and reduce paid traffic efficiency.',
+        slugs: [
+          'shopify-speed-optimisation',
+          'ecommerce-speed-optimisation'
+        ]
+      },
+      {
+        title: 'SEO and tracking guides',
+        description:
+          'Improve organic visibility, structured data, reporting confidence and server-side measurement decisions.',
+        slugs: [
+          'technical-seo-for-ecommerce',
+          'ga4-ecommerce-tracking',
+          'server-side-tracking-for-ecommerce'
+        ]
+      }
+    ]
+  },
+  industries: {
+    eyebrow: 'Ecommony industries',
+    title: 'Ecommerce growth support for high-consideration product categories',
+    description:
+      'Sector-specific ecommerce growth guidance for brands that need stronger trust, clearer journeys and better demand capture.',
+    introTitle: 'Growth problems change by category, buyer confidence and purchase risk',
+    introCopy:
+      'A fashion store, supplement brand, jewellery retailer and home interiors business can all suffer from weak conversion, but the reasons are different. These pages focus on the trust signals, search behaviour, content structure and customer journeys that matter in each category.',
+    groups: [
+      {
+        title: 'Trust-led and repeat-purchase categories',
+        description:
+          'For brands where education, proof, claims, suitability and lifecycle journeys shape conversion.',
+        slugs: [
+          'beauty-ecommerce-growth',
+          'supplements-ecommerce-growth',
+          'health-wellness-ecommerce-growth'
+        ]
+      },
+      {
+        title: 'High-consideration and premium purchases',
+        description:
+          'For products where buyers need stronger reassurance around quality, provenance, fit, delivery or aftercare.',
+        slugs: [
+          'jewellery-luxury-ecommerce-growth',
+          'home-interiors-ecommerce-growth'
+        ]
+      },
+      {
+        title: 'Discovery-led ecommerce',
+        description:
+          'For categories where product discovery, merchandising, styling, SEO and social proof drive demand capture.',
+        slugs: [
+          'fashion-ecommerce-growth'
+        ]
+      }
+    ]
+  }
+};
+
+  return Object.keys(sectionLabels).map((section) => ({
+    params: { section },
+    props: {
+      section,
+      meta: sectionLabels[section as HubSection],
+      pages: intentPages.filter((page) => page.section === section),
+    },
+  }));
+}
+
+const sectionLabels: Record<HubSection, {
+  eyebrow: string;
+  title: string;
+  description: string;
+  introTitle: string;
+  introCopy: string;
+  groups: HubGroup[];
+}> = {
+  services: {
+    eyebrow: 'Ecommony services',
+    title: 'Ecommerce services for speed, SEO, conversion and tracking confidence',
+    description:
+      'Specialist ecommerce consulting services for Shopify, Magento, WordPress and growth teams that need to know what to fix first.',
+    introTitle: 'Find the commercial blocker before spending more on traffic',
+    introCopy:
+      'Most ecommerce underperformance is not caused by one isolated issue. Speed, tracking, SEO, product discovery, trust signals and conversion friction usually overlap. These services are designed to diagnose the constraint, prioritise what matters commercially and support practical implementation.',
+    groups: [
+      {
+        title: 'Conversion and customer journeys',
+        description:
+          'For sites getting traffic but not enough sales, enquiries or confident customer progression.',
+        slugs: [
+          'shopify-cro-audit',
+          'ecommerce-conversion-audit'
+        ]
+      },
+      {
+        title: 'Speed and technical performance',
+        description:
+          'For stores slowed down by apps, scripts, themes, extensions, templates or technical debt.',
+        slugs: [
+          'shopify-speed-optimisation',
+          'magento-speed-optimisation'
+        ]
+      },
+      {
+        title: 'SEO, tracking and measurement confidence',
+        description:
+          'For teams that need clearer organic visibility, cleaner GA4 data and more reliable reporting.',
+        slugs: [
+          'wordpress-technical-seo-audit',
+          'ga4-ecommerce-tracking-audit',
+          'ecommerce-tracking-cleanup'
+        ]
+      }
+    ]
+  },
+  guides: {
+    eyebrow: 'Ecommony guides',
+    title: 'Ecommerce guides for teams improving speed, SEO, conversion and tracking',
+    description:
+      'Practical ecommerce guides explaining what breaks, why it matters commercially and what to check first.',
+    introTitle: 'Practical diagnosis before redesigns, rebuilds or agency spend',
+    introCopy:
+      'These guides explain common ecommerce problems in plain commercial terms: what is usually happening, why it affects revenue and what to investigate before committing budget or development time.',
+    groups: [
+      {
+        title: 'Conversion and CRO guides',
+        description:
+          'Understand why visitors hesitate, where journeys leak revenue and what to fix before redesigning.',
+        slugs: [
+          'ecommerce-conversion-rate-optimisation',
+          'shopify-conversion-rate-optimisation'
+        ]
+      },
+      {
+        title: 'Speed and performance guides',
+        description:
+          'Diagnose the performance issues that slow mobile journeys, weaken UX and reduce paid traffic efficiency.',
+        slugs: [
+          'shopify-speed-optimisation',
+          'ecommerce-speed-optimisation'
+        ]
+      },
+      {
+        title: 'SEO and tracking guides',
+        description:
+          'Improve organic visibility, structured data, reporting confidence and server-side measurement decisions.',
+        slugs: [
+          'technical-seo-for-ecommerce',
+          'ga4-ecommerce-tracking',
+          'server-side-tracking-for-ecommerce'
+        ]
+      }
+    ]
+  },
+  industries: {
+    eyebrow: 'Ecommony industries',
+    title: 'Ecommerce growth support for high-consideration product categories',
+    description:
+      'Sector-specific ecommerce growth guidance for brands that need stronger trust, clearer journeys and better demand capture.',
+    introTitle: 'Growth problems change by category, buyer confidence and purchase risk',
+    introCopy:
+      'A fashion store, supplement brand, jewellery retailer and home interiors business can all suffer from weak conversion, but the reasons are different. These pages focus on the trust signals, search behaviour, content structure and customer journeys that matter in each category.',
+    groups: [
+      {
+        title: 'Trust-led and repeat-purchase categories',
+        description:
+          'For brands where education, proof, claims, suitability and lifecycle journeys shape conversion.',
+        slugs: [
+          'beauty-ecommerce-growth',
+          'supplements-ecommerce-growth',
+          'health-wellness-ecommerce-growth'
+        ]
+      },
+      {
+        title: 'High-consideration and premium purchases',
+        description:
+          'For products where buyers need stronger reassurance around quality, provenance, fit, delivery or aftercare.',
+        slugs: [
+          'jewellery-luxury-ecommerce-growth',
+          'home-interiors-ecommerce-growth'
+        ]
+      },
+      {
+        title: 'Discovery-led ecommerce',
+        description:
+          'For categories where product discovery, merchandising, styling, SEO and social proof drive demand capture.',
+        slugs: [
+          'fashion-ecommerce-growth'
+        ]
+      }
+    ]
+  }
+};
+
+const { section, meta, pages } = Astro.props as {
+  section: HubSection;
+  meta: typeof sectionLabels[HubSection];
+  pages: typeof intentPages;
+};
+
+const pagesBySlug = new Map(pages.map((page) => [page.slug, page]));
+
+const groupedPages = meta.groups.map((group) => ({
+  ...group,
+  pages: group.slugs
+    .map((slug) => pagesBySlug.get(slug))
+    .filter(Boolean),
+}));
+
+const groupedSlugs = new Set(meta.groups.flatMap((group) => group.slugs));
+const ungroupedPages = pages.filter((page) => !groupedSlugs.has(page.slug));
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: meta.title,
+  description: meta.description,
+  url: `https://ecommony.com/${section}/`,
+  hasPart: pages.map((page) => ({
+    '@type': 'WebPage',
+    name: page.title,
+    description: page.description,
+    url: `https://ecommony.com${getIntentPagePath(page)}`,
+  })),
+};
+
+const sectionLabel = section.charAt(0).toUpperCase() + section.slice(1);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://ecommony.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: sectionLabel,
+      item: `https://ecommony.com/${section}/`,
+    },
+  ],
+};
+---
+
+<IntentPageLayout
+  title={meta.title}
+  description={meta.description}
+  eyebrow={meta.eyebrow}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <span>{sectionLabel}</span>
+  </nav>
+
+  <section class="intent-hero">
+    <span class="pill">{meta.eyebrow}</span>
+    <h1>{meta.title}</h1>
+    <p class="sub">{meta.description}</p>
+  </section>
+
+  <main class="content-card">
+    <section class="section-block hub-intro">
+      <h2>{meta.introTitle}</h2>
+      <p>{meta.introCopy}</p>
+    </section>
+
+    {groupedPages.map((group) => (
+      group.pages.length > 0 && (
+        <section class="section-block hub-group">
+          <div class="hub-group__header">
+            <h2>{group.title}</h2>
+            <p>{group.description}</p>
+          </div>
+
+          <div class="hub-grid">
+            {group.pages.map((page) => (
+              <a class="hub-card" href={getIntentPagePath(page)}>
+                <span class="hub-card__eyebrow">{page.eyebrow}</span>
+                <h3>{page.title}</h3>
+                <p>{page.description}</p>
+                <span class="hub-card__link">Read the page →</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    ))}
+
+    {ungroupedPages.length > 0 && (
+      <section class="section-block hub-group">
+        <div class="hub-group__header">
+          <h2>More pages</h2>
+          <p>Additional ecommerce resources in this section.</p>
+        </div>
+
+        <div class="hub-grid">
+          {ungroupedPages.map((page) => (
+            <a class="hub-card" href={getIntentPagePath(page)}>
+              <span class="hub-card__eyebrow">{page.eyebrow}</span>
+              <h3>{page.title}</h3>
+              <p>{page.description}</p>
+              <span class="hub-card__link">Read the page →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+</IntentPageLayout>
+
+<style>
+  .hub-intro {
+    padding: 4px 0 2px;
+  }
+
+  .hub-group {
+    padding-top: 4px;
+    border-top: 1px solid var(--line);
+  }
+
+  .hub-group__header {
+    max-width: 760px;
+    margin-bottom: 16px;
+  }
+
+  .hub-group__header h2 {
+    margin-bottom: 8px;
+  }
+
+  .hub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .hub-card {
+    display: block;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255,255,255,.9);
+    box-shadow: var(--shadow2);
+  }
+
+  .hub-card:hover {
+    transform: translateY(-1px);
+  }
+
+  .hub-card__eyebrow {
+    display: inline-flex;
+    margin-bottom: 10px;
+    color: var(--muted2);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .hub-card h3 {
+    margin: 0 0 10px;
+    font-size: 23px;
+    line-height: 1.16;
+    letter-spacing: -.35px;
+  }
+
+  .hub-card p {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .hub-card__link {
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  @media (max-width: 800px) {
+    .hub-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

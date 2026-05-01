@@ -1,0 +1,157 @@
+---
+import IntentPageLayout from '../../layouts/IntentPageLayout.astro';
+import { intentPages, getIntentPagePath } from '../../data/intentPages';
+
+export function getStaticPaths() {
+  return intentPages.map((page) => ({
+    params: {
+      section: page.section,
+      slug: page.slug,
+    },
+    props: {
+      page,
+    },
+  }));
+}
+
+const { page } = Astro.props;
+
+const relatedPages = intentPages
+  .filter((item) => item.section === page.section && item.slug !== page.slug)
+  .slice(0, 3);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: page.faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+
+const sectionLabel = page.section.charAt(0).toUpperCase() + page.section.slice(1);
+const sectionPath = `/${page.section}/`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://ecommony.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: sectionLabel,
+      item: `https://ecommony.com${sectionPath}`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: page.eyebrow || page.title,
+      item: `https://ecommony.com${getIntentPagePath(page)}`,
+    },
+  ],
+};
+---
+
+<IntentPageLayout
+  title={page.title}
+  description={page.description}
+  eyebrow={page.eyebrow}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href={sectionPath}>{sectionLabel}</a>
+    <span aria-hidden="true">/</span>
+    <span>{page.eyebrow || page.title}</span>
+  </nav>
+
+  <section class="intent-hero">
+    <span class="pill">{page.eyebrow}</span>
+    <h1>{page.title}</h1>
+    <p class="sub">{page.description}</p>
+  </section>
+
+  <div class="intent-grid">
+    <main class="content-card">
+      <section class="section-block">
+        <h2>What is usually happening</h2>
+        <p>{page.intentSummary}</p>
+      </section>
+
+      <section class="section-block">
+        <h2>Common symptoms</h2>
+        <ul class="check-list">
+          {page.symptoms.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section class="section-block">
+        <h2>Why it matters commercially</h2>
+        <ul class="check-list">
+          {page.commercialImpact.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section class="section-block">
+        <h2>What to fix first</h2>
+        <ul class="check-list">
+          {page.whatToFixFirst.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section class="section-block">
+        <h2>How Ecommony helps</h2>
+        <ul class="check-list">
+          {page.howEcommonyHelps.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section class="section-block">
+        <h2>Questions this page answers</h2>
+        <div class="faq">
+          {page.faqs.map((faq) => (
+            <details>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <aside class="side-card">
+      <h2>Start with a free audit</h2>
+      <p>
+        See where speed, SEO, conversion and tracking issues are most likely holding the site back.
+      </p>
+      <a class="btn primary" href="https://ecommony.com/#start-audit">Start free audit</a>
+
+      {relatedPages.length > 0 && (
+        <>
+          <hr style="border:0;border-top:1px solid rgba(11,18,32,.10);margin:22px 0;" />
+          <h2>Related pages</h2>
+          <ul class="check-list">
+            {relatedPages.map((related) => (
+              <li>
+                <a href={getIntentPagePath(related)}>{related.title}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </aside>
+  </div>
+</IntentPageLayout>

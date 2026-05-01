@@ -1,0 +1,198 @@
+---
+const title = 'Contact Ecommony | Ecommerce audit, SEO, CRO, speed and tracking support';
+const description =
+  'Contact Ecommony for ecommerce audits, Shopify, Magento, WordPress, GA4, tracking, SEO, speed and conversion support.';
+---
+
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFJDYQHSPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BFJDYQHSPM');
+  </script>
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://ecommony.com/contact/" />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ecommony.com/contact/" />
+  <meta property="og:site_name" content="Ecommony" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/ecommony.min.css">
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Ecommony',
+    description,
+    url: 'https://ecommony.com/contact/',
+    mainEntity: {
+      '@type': 'ProfessionalService',
+      name: 'Ecommony',
+      url: 'https://ecommony.com/',
+      email: 'nigel@ecommony.com',
+      telephone: '+447877932578',
+      areaServed: 'GB'
+    }
+  })} />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <a class="logo" href="/" aria-label="Ecommony home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Ecommony</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="/#services">Services</a>
+        <a href="/#platforms">Platforms</a>
+        <a href="/#advantage">Why Ecommony</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+
+      <a class="btn subtle" href="/#start-audit">Start free audit</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" style="grid-template-columns:minmax(0,1fr);grid-template-areas:'top' 'copy';max-width:900px;">
+        <div class="hero-top">
+          <span class="pill">Ecommerce audit, SEO, CRO, speed and tracking support</span>
+        </div>
+
+        <div class="hero-copy">
+          <h1>Contact Ecommony</h1>
+          <p class="sub">
+            Get in touch about ecommerce audits, implementation support, Shopify, Magento, WordPress,
+            GA4 tracking, speed, SEO or conversion improvements.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid cols-2">
+          <div class="card box">
+            <h2>Direct contact</h2>
+            <p><strong>Email:</strong> <a href="mailto:nigel@ecommony.com">nigel@ecommony.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:07877932578">07877 932578</a></p>
+            <p class="fine">
+              Best for deeper audit enquiries, tracking reviews, implementation work and monthly support.
+            </p>
+
+            <div class="tagRow">
+              <span class="tag">Shopify</span>
+              <span class="tag">Magento</span>
+              <span class="tag">WordPress</span>
+              <span class="tag">GA4 / GTM</span>
+              <span class="tag">SEO / CRO</span>
+            </div>
+          </div>
+
+          <div class="card box">
+            <h2>Request a callback</h2>
+
+            <form class="form" id="contactForm2" method="POST" action="/api/contact.php">
+              <input name="name" placeholder="Your name" required />
+              <input name="email" type="email" placeholder="Your email" required />
+              <input name="url" placeholder="Website (optional)" />
+              <textarea name="notes" placeholder="What do you need help with?"></textarea>
+
+              <input
+                type="text"
+                name="company"
+                tabindex="-1"
+                autocomplete="off"
+                style="position:absolute; left:-9999px;"
+              />
+
+              <button class="btn primary" type="submit">
+                Send enquiry
+              </button>
+
+              <p class="fine" id="contactMsg"></p>
+            </form>
+
+            <p class="fine">
+              Or email directly: <a href="mailto:nigel@ecommony.com">nigel@ecommony.com</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="cta-band">
+          <h2>Not sure what you need yet?</h2>
+          <p class="section-lead">
+            Start with the free competitor-benchmarked audit and use the report to decide what to fix first.
+          </p>
+          <a class="btn primary" href="/#start-audit">Start free audit</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="foot">
+        <div class="footer-brand">
+          <strong>Ecommony</strong>
+          <span>Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.</span>
+        </div>
+
+        <div class="footer-actions">
+          <a class="btn" href="/services/">Services</a>
+          <a class="btn primary" href="/#start-audit">Start free audit</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const contactForm2 = document.getElementById("contactForm2");
+    const contactMsg = document.getElementById("contactMsg");
+
+    if (contactForm2) {
+      contactForm2.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        contactMsg.textContent = "Sending…";
+
+        const formData = new FormData(contactForm2);
+
+        try {
+          const res = await fetch(contactForm2.action, {
+            method: "POST",
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: { "Content-Type": "application/json" }
+          });
+
+          const data = await res.json();
+
+          if (data.ok) {
+            contactMsg.textContent = "Thanks — I’ll get back to you shortly.";
+            contactForm2.reset();
+          } else {
+            throw new Error("Contact request failed");
+          }
+        } catch (err) {
+          console.error(err);
+          contactMsg.textContent = "Something went wrong. Please email directly.";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
