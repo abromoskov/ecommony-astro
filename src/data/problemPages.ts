@@ -241,7 +241,113 @@ faqs: [
         'GA4 revenue may be higher if purchase events are duplicated, transaction IDs are missing, multiple apps or tags send the same purchase, or test and internal transactions are included.'
     }
 ]
-    }
+    },
+      {
+    slug: 'shopify-site-slow',
+    eyebrow: 'Shopify site slow',
+    title: 'Shopify site slow? What usually causes it and what to check first',
+    description:
+      'A practical guide for Shopify teams when slow pages, heavy apps, scripts or theme code are affecting conversion, paid media efficiency and search visibility.',
+    serviceType: 'Shopify speed optimisation',
+    summary:
+      'A slow Shopify site is usually caused by a combination of app scripts, theme weight, images, third-party tags, rendering delays and unused code. The commercial risk is not just a poor speed score; slower journeys can reduce conversion, increase paid media waste and weaken customer confidence before checkout.',
+    introTitle: 'When Shopify speed starts affecting growth',
+    intro:
+      'Shopify speed problems often build up gradually. New apps, tracking scripts, theme edits, image-heavy sections, page builders and marketing tools can all add weight to the customer journey. The problem is rarely just one file or one score; it is usually the combined effect of many small performance drags.',
+    symptoms: [
+      'Mobile pages feel slow even when the desktop version appears acceptable.',
+      'Product pages, collection pages or the homepage take too long to become usable.',
+      'PageSpeed or Core Web Vitals scores are weak, especially on mobile.',
+      'Conversion rate is lower than expected despite good traffic and product-market fit.',
+      'Paid traffic is expensive because users leave before they properly engage with the store.'
+    ],
+    whatBreaks: [
+      'Too many Shopify apps load scripts, widgets or tracking code across every page.',
+      'Theme code includes unused JavaScript, CSS, sections or legacy customisations.',
+      'Large images, videos or hero assets are not properly sized, compressed or prioritised.',
+      'Third-party tags delay rendering, interaction or key ecommerce actions.',
+      'Important mobile journeys are slowed by pop-ups, reviews widgets, bundles, subscriptions or personalisation tools.'
+    ],
+    whatToCheckFirst: [
+      'Review mobile Core Web Vitals and compare homepage, collection, product and checkout-adjacent journeys.',
+      'Check which apps and third-party scripts load on key commercial pages.',
+      'Identify oversized images, render-blocking assets and heavy theme sections.',
+      'Look for unused apps, duplicate tags and legacy code from previous experiments.',
+      'Prioritise fixes by likely conversion impact, not just by technical score.'
+    ],
+    evidenceIntro:
+      'This page is based on practical Shopify performance diagnosis and official documentation covering Core Web Vitals, Lighthouse, Shopify theme performance, image optimisation and the commercial relationship between speed, usability and conversion.',
+    sources: [
+      {
+        label: 'Google Core Web Vitals',
+        url: 'https://web.dev/articles/vitals',
+        note: 'Explains the key user-experience metrics Google uses to assess loading, responsiveness and visual stability.'
+      },
+      {
+        label: 'PageSpeed Insights',
+        url: 'https://pagespeed.web.dev/',
+        note: 'Provides lab and field performance diagnostics for web pages, including Core Web Vitals signals.'
+      },
+      {
+        label: 'Lighthouse performance audits',
+        url: 'https://developer.chrome.com/docs/lighthouse/performance/performance-scoring',
+        note: 'Explains how Lighthouse performance scoring works and why individual audits affect the final score.'
+      },
+      {
+        label: 'Shopify theme performance',
+        url: 'https://shopify.dev/docs/storefronts/themes/best-practices/performance',
+        note: 'Outlines Shopify theme performance best practices for faster storefront experiences.'
+      },
+      {
+        label: 'Google image optimisation guidance',
+        url: 'https://web.dev/learn/images',
+        note: 'Explains how image size, format and loading behaviour affect page performance.'
+      }
+    ],
+    ecommonyInterpretation:
+      'The most useful Shopify speed work is not chasing a perfect score in isolation. It is identifying which performance issues slow real customer journeys, which ones affect conversion or paid traffic efficiency, and which fixes can be made without damaging merchandising, tracking or revenue-critical functionality.',
+    help: [
+      'Audit Shopify speed across homepage, collection, product and key conversion journeys.',
+      'Identify heavy apps, scripts, theme sections, images and third-party tags.',
+      'Separate cosmetic performance issues from commercially important bottlenecks.',
+      'Create a prioritised speed improvement plan for developers or implementation teams.',
+      'Protect tracking, merchandising and conversion functionality while reducing technical drag.'
+    ],
+    relatedLinks: [
+      {
+        label: 'Shopify speed optimisation',
+        href: '/services/shopify-speed-optimisation/',
+        description: 'Identify app, script and theme issues slowing Shopify performance and affecting conversion.'
+      },
+      {
+        label: 'Shopify speed optimisation guide',
+        href: '/guides/shopify-speed-optimisation/',
+        description: 'Understand what actually slows Shopify stores down and what to investigate first.'
+      },
+      {
+        label: 'Shopify consultant London',
+        href: '/shopify-consultant-london/',
+        description: 'Shopify support for stores that need clearer conversion, speed and tracking priorities.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Why is my Shopify site slow?',
+        answer:
+          'Shopify sites usually become slow because of a combination of app scripts, theme code, large images, third-party tags, unused customisations and heavy marketing tools. The cause is often cumulative rather than one single issue.'
+      },
+      {
+        question: 'Do Shopify apps slow down a store?',
+        answer:
+          'Yes, some Shopify apps can add scripts, widgets, tracking calls or front-end assets that affect page speed. Not every app is a problem, but app load should be reviewed on important commercial pages.'
+      },
+      {
+        question: 'Should I remove apps to improve Shopify speed?',
+        answer:
+          'Sometimes, but not blindly. Apps should be reviewed by commercial value and performance cost. The aim is to remove, replace or limit the load of apps that slow the customer journey without supporting revenue.'
+      }
+    ]
+  }
 ];
 
 export function getProblemPagePath(page: ProblemPage): string {
