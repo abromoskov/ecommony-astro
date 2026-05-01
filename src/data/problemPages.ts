@@ -135,113 +135,113 @@ export const problemPages: ProblemPage[] = [
           'Not always. The first step is to diagnose which events, tags, parameters or integrations are unreliable. Some setups need a rebuild, but others only need targeted repair.'
       }
     ]
-  }
+  },
     {
-    slug: 'shopify-ga4-revenue-not-matching',
-    eyebrow: 'Shopify GA4 revenue not matching',
-    title: 'Shopify and GA4 revenue not matching? Why it happens and what to check first',
-    description:
-      'A practical guide for Shopify teams when GA4 revenue, purchase events or paid media conversion data does not match Shopify orders and sales reporting.',
-    serviceType: 'Shopify GA4 tracking audit',
-    summary:
-      'Shopify and GA4 revenue rarely match perfectly, but large unexplained gaps usually point to tracking, consent, checkout, attribution or duplicate-event issues. The commercial risk is making paid media, CRO and trading decisions from reports that misrepresent orders, revenue and customer behaviour.',
-    introTitle: 'When Shopify and GA4 numbers stop agreeing',
-    intro:
-      'Shopify is usually the commercial source of truth for orders and revenue, while GA4 is used to understand acquisition, behaviour and conversion journeys. Problems appear when GA4 purchase events, revenue values, attribution, consent settings or checkout tracking no longer reflect what Shopify records.',
-    symptoms: [
-      'GA4 purchase revenue is materially lower or higher than Shopify revenue.',
-      'GA4 purchase events do not match Shopify order volume for the same period.',
-      'Google Ads, Meta, GA4 and Shopify all show different conversion numbers without a clear reason.',
-      'Tracking changed after Shopify checkout updates, customer events, app changes or theme work.',
-      'Reports make it hard to understand which channels, landing pages or journeys are actually driving sales.'
-    ],
-    whatBreaks: [
-      'Purchase events fail to fire consistently after checkout or customer event changes.',
-      'Duplicate purchase events are sent by multiple apps, scripts, pixels or GTM tags.',
-      'Revenue parameters are missing, malformed or sent with different tax, shipping or discount treatment.',
-      'Consent settings alter when analytics and advertising tags can send data.',
-      'GA4 attribution and Shopify order reporting are being compared as if they use the same logic.'
-    ],
-    whatToCheckFirst: [
-      'Compare Shopify order count and revenue against GA4 purchase events for the same date range.',
-      'Separate expected reporting differences from unexplained tracking gaps.',
-      'Test a purchase journey using GA4 DebugView and GTM preview mode where possible.',
-      'Check whether Shopify customer events, pixels, apps or custom scripts are sending overlapping events.',
-      'Review purchase event parameters including transaction_id, value, currency, tax, shipping and items.'
-    ],
-    evidenceIntro:
-      'This page is based on ecommerce measurement practice and official documentation covering GA4 ecommerce events, Shopify customer events, Google Tag Manager debugging and the reporting differences between analytics and commerce platforms.',
-    sources: [
-      {
-        label: 'Google Analytics ecommerce events',
-        url: 'https://developers.google.com/analytics/devguides/collection/ga4/ecommerce',
-        note: 'Defines GA4 purchase events, ecommerce parameters and item-level data requirements.'
-      },
-      {
-        label: 'GA4 purchase event documentation',
-        url: 'https://developers.google.com/analytics/devguides/collection/ga4/reference/events',
-        note: 'Explains recommended GA4 event parameters including purchase and transaction data.'
-      },
-      {
-        label: 'Shopify customer events and pixels',
-        url: 'https://help.shopify.com/en/manual/promoting-marketing/pixels/custom-pixels',
-        note: 'Explains how Shopify customer events and custom pixels are used for tracking.'
-      },
-      {
-        label: 'Google Tag Manager preview and debug mode',
-        url: 'https://support.google.com/tagmanager/answer/6107056',
-        note: 'Useful for checking whether conversion and ecommerce tags fire correctly.'
-      },
-      {
-        label: 'Google Analytics attribution',
-        url: 'https://support.google.com/analytics/answer/10597962',
-        note: 'Explains attribution concepts that can affect channel and conversion reporting.'
-      }
-    ],
-    ecommonyInterpretation:
-      'The goal is not to force Shopify and GA4 to match exactly. The goal is to know which differences are expected, which are caused by broken tracking, and whether the remaining data is reliable enough to guide marketing and conversion decisions.',
-    help: [
-      'Compare Shopify orders and revenue against GA4 purchase events.',
-      'Identify duplicate, missing or malformed purchase events.',
-      'Review Shopify customer events, app pixels, GTM tags and custom scripts.',
-      'Check purchase parameters including transaction ID, value, currency and item data.',
-      'Create a practical repair plan so ecommerce, marketing and reporting teams know which numbers to trust.'
-    ],
-    relatedLinks: [
-      {
-        label: 'GA4 ecommerce tracking not working',
-        href: '/ga4-ecommerce-tracking-not-working/',
-        description: 'Understand what usually breaks when GA4 ecommerce tracking becomes unreliable.'
-      },
-      {
-        label: 'GA4 ecommerce tracking audit',
-        href: '/services/ga4-ecommerce-tracking-audit/',
-        description: 'A focused audit for missing events, duplicated conversions, checkout gaps and unreliable ecommerce reporting.'
-      },
-      {
-        label: 'Shopify consultant London',
-        href: '/shopify-consultant-london/',
-        description: 'Shopify support for stores that need clearer conversion, speed and tracking priorities.'
-      }
-    ],
-    faqs: [
-      {
-        question: 'Should Shopify and GA4 revenue match exactly?',
-        answer:
-          'No. Shopify and GA4 use different reporting logic, attribution, timing and filtering, so small differences are normal. Large unexplained differences usually need investigation.'
-      },
-      {
-        question: 'Why is GA4 revenue lower than Shopify revenue?',
-        answer:
-          'GA4 revenue may be lower because purchase events are missing, consent limits tracking, tags fail during checkout, users block scripts, or GA4 is not receiving complete ecommerce parameters.'
-      },
-      {
-        question: 'Why is GA4 revenue higher than Shopify revenue?',
-        answer:
-          'GA4 revenue may be higher if purchase events are duplicated, transaction IDs are missing, multiple apps or tags send the same purchase, or test and internal transactions are included.'
-      }
-    ]
-  }
+slug: 'shopify-ga4-revenue-not-matching',
+eyebrow: 'Shopify GA4 revenue not matching',
+title: 'Shopify and GA4 revenue not matching? Why it happens and what to check first',
+description:
+    'A practical guide for Shopify teams when GA4 revenue, purchase events or paid media conversion data does not match Shopify orders and sales reporting.',
+serviceType: 'Shopify GA4 tracking audit',
+summary:
+    'Shopify and GA4 revenue rarely match perfectly, but large unexplained gaps usually point to tracking, consent, checkout, attribution or duplicate-event issues. The commercial risk is making paid media, CRO and trading decisions from reports that misrepresent orders, revenue and customer behaviour.',
+introTitle: 'When Shopify and GA4 numbers stop agreeing',
+intro:
+    'Shopify is usually the commercial source of truth for orders and revenue, while GA4 is used to understand acquisition, behaviour and conversion journeys. Problems appear when GA4 purchase events, revenue values, attribution, consent settings or checkout tracking no longer reflect what Shopify records.',
+symptoms: [
+    'GA4 purchase revenue is materially lower or higher than Shopify revenue.',
+    'GA4 purchase events do not match Shopify order volume for the same period.',
+    'Google Ads, Meta, GA4 and Shopify all show different conversion numbers without a clear reason.',
+    'Tracking changed after Shopify checkout updates, customer events, app changes or theme work.',
+    'Reports make it hard to understand which channels, landing pages or journeys are actually driving sales.'
+],
+whatBreaks: [
+    'Purchase events fail to fire consistently after checkout or customer event changes.',
+    'Duplicate purchase events are sent by multiple apps, scripts, pixels or GTM tags.',
+    'Revenue parameters are missing, malformed or sent with different tax, shipping or discount treatment.',
+    'Consent settings alter when analytics and advertising tags can send data.',
+    'GA4 attribution and Shopify order reporting are being compared as if they use the same logic.'
+],
+whatToCheckFirst: [
+    'Compare Shopify order count and revenue against GA4 purchase events for the same date range.',
+    'Separate expected reporting differences from unexplained tracking gaps.',
+    'Test a purchase journey using GA4 DebugView and GTM preview mode where possible.',
+    'Check whether Shopify customer events, pixels, apps or custom scripts are sending overlapping events.',
+    'Review purchase event parameters including transaction_id, value, currency, tax, shipping and items.'
+],
+evidenceIntro:
+    'This page is based on ecommerce measurement practice and official documentation covering GA4 ecommerce events, Shopify customer events, Google Tag Manager debugging and the reporting differences between analytics and commerce platforms.',
+sources: [
+    {
+    label: 'Google Analytics ecommerce events',
+    url: 'https://developers.google.com/analytics/devguides/collection/ga4/ecommerce',
+    note: 'Defines GA4 purchase events, ecommerce parameters and item-level data requirements.'
+    },
+    {
+    label: 'GA4 purchase event documentation',
+    url: 'https://developers.google.com/analytics/devguides/collection/ga4/reference/events',
+    note: 'Explains recommended GA4 event parameters including purchase and transaction data.'
+    },
+    {
+    label: 'Shopify customer events and pixels',
+    url: 'https://help.shopify.com/en/manual/promoting-marketing/pixels/custom-pixels',
+    note: 'Explains how Shopify customer events and custom pixels are used for tracking.'
+    },
+    {
+    label: 'Google Tag Manager preview and debug mode',
+    url: 'https://support.google.com/tagmanager/answer/6107056',
+    note: 'Useful for checking whether conversion and ecommerce tags fire correctly.'
+    },
+    {
+    label: 'Google Analytics attribution',
+    url: 'https://support.google.com/analytics/answer/10597962',
+    note: 'Explains attribution concepts that can affect channel and conversion reporting.'
+    }
+],
+ecommonyInterpretation:
+    'The goal is not to force Shopify and GA4 to match exactly. The goal is to know which differences are expected, which are caused by broken tracking, and whether the remaining data is reliable enough to guide marketing and conversion decisions.',
+help: [
+    'Compare Shopify orders and revenue against GA4 purchase events.',
+    'Identify duplicate, missing or malformed purchase events.',
+    'Review Shopify customer events, app pixels, GTM tags and custom scripts.',
+    'Check purchase parameters including transaction ID, value, currency and item data.',
+    'Create a practical repair plan so ecommerce, marketing and reporting teams know which numbers to trust.'
+],
+relatedLinks: [
+    {
+    label: 'GA4 ecommerce tracking not working',
+    href: '/ga4-ecommerce-tracking-not-working/',
+    description: 'Understand what usually breaks when GA4 ecommerce tracking becomes unreliable.'
+    },
+    {
+    label: 'GA4 ecommerce tracking audit',
+    href: '/services/ga4-ecommerce-tracking-audit/',
+    description: 'A focused audit for missing events, duplicated conversions, checkout gaps and unreliable ecommerce reporting.'
+    },
+    {
+    label: 'Shopify consultant London',
+    href: '/shopify-consultant-london/',
+    description: 'Shopify support for stores that need clearer conversion, speed and tracking priorities.'
+    }
+],
+faqs: [
+    {
+    question: 'Should Shopify and GA4 revenue match exactly?',
+    answer:
+        'No. Shopify and GA4 use different reporting logic, attribution, timing and filtering, so small differences are normal. Large unexplained differences usually need investigation.'
+    },
+    {
+    question: 'Why is GA4 revenue lower than Shopify revenue?',
+    answer:
+        'GA4 revenue may be lower because purchase events are missing, consent limits tracking, tags fail during checkout, users block scripts, or GA4 is not receiving complete ecommerce parameters.'
+    },
+    {
+    question: 'Why is GA4 revenue higher than Shopify revenue?',
+    answer:
+        'GA4 revenue may be higher if purchase events are duplicated, transaction IDs are missing, multiple apps or tags send the same purchase, or test and internal transactions are included.'
+    }
+]
+    }
 ];
 
 export function getProblemPagePath(page: ProblemPage): string {
