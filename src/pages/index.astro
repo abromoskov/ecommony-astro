@@ -1,3 +1,8 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/ecommony.css';
+---
+
 <!doctype html>
 <html lang="en-GB">
 <head>
@@ -791,26 +796,7 @@
 
     </main>
 
-    <footer>
-      <div class="foot">
-        <div class="footer-brand">
-          <strong>Ecommony</strong>
-          <span>
-            Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.
-          </span>
-
-          <div class="footer-meta">
-            <span><a href="mailto:nigel@ecommony.com">nigel@ecommony.com</a></span>
-            <span><a href="tel:07877932578">07877 932578</a></span>
-          </div>
-        </div>
-
-        <div class="footer-actions">
-          <a class="btn" href="#contact">Contact Nigel</a>
-          <a class="btn primary" href="#start-audit">Start free audit</a>
-        </div>
-      </div>
-    </footer>
+    <SiteFooter />
   </div>
 
   <script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.min.js"></script>
