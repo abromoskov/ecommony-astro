@@ -1,4 +1,5 @@
 ---
+import SiteFooter from '../components/SiteFooter.astro';
 const {
   title = 'Ecommony Blog',
   description = 'Technical ecommerce articles on Shopify, Magento, WordPress, SEO, tracking and site speed.',
@@ -507,6 +508,38 @@ const fullImage = new URL(finalImage, site).toString();
         gap:10px;
         justify-content:flex-end;
       }
+            .footer-grid{
+        display:grid;
+        grid-template-columns:1.1fr repeat(4, minmax(130px, 1fr));
+        gap:24px;
+        align-items:start;
+        border-top:1px solid var(--line);
+        padding-top:24px;
+      }
+
+      .footer-group h3{
+        margin:0 0 10px;
+        color:var(--text);
+        font-size:14px;
+        line-height:1.2;
+      }
+
+      .footer-group nav{
+        display:grid;
+        gap:8px;
+      }
+
+      .footer-group a{
+        color:var(--muted);
+        font-size:13px;
+        line-height:1.35;
+      }
+
+      .footer-group a:hover{
+        color:var(--text);
+        text-decoration:underline;
+        text-underline-offset:2px;
+      }
 
       @media (max-width: 900px){
         .nav{
@@ -530,6 +563,7 @@ const fullImage = new URL(finalImage, site).toString();
         h1{max-width:none}
         .foot{grid-template-columns:1fr}
         .footer-actions{justify-content:flex-start}
+        .footer-grid{grid-template-columns:1fr}
         .content-card{padding:18px}
       }
 
@@ -609,19 +643,7 @@ const fullImage = new URL(finalImage, site).toString();
   </section>
 )}
 
-      <footer>
-        <div class="foot">
-          <div class="footer-brand">
-            <strong>Ecommony</strong>
-            <span>Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.</span>
-          </div>
-
-          <div class="footer-actions">
-            <a class="btn" href="https://ecommony.com/#start-audit">Start free audit</a>
-            <a class="btn primary" href="/contact/">Contact</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   </body>
 </html>
