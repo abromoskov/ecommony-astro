@@ -1,0 +1,197 @@
+---
+const title = 'Terms and Conditions | Ecommony';
+const description =
+  'Terms and conditions for using the Ecommony website and making enquiries about ecommerce consulting, audits and implementation support.';
+const canonical = 'https://ecommony.com/terms-and-conditions/';
+const lastUpdated = '1 May 2026';
+---
+
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content="Ecommony" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/css/ecommony.min.css" />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Terms and Conditions',
+    description,
+    url: canonical,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Ecommony',
+      url: 'https://ecommony.com/'
+    }
+  })} />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <a class="logo" href="/" aria-label="Ecommony home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Ecommony</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="/services/">Services</a>
+        <a href="/guides/">Guides</a>
+        <a href="/industries/">Industries</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+
+      <details class="mobile-menu">
+        <summary class="btn" aria-label="Open navigation menu">Menu</summary>
+        <nav class="mobile-menu__panel" aria-label="Mobile primary">
+          <a href="/">Home</a>
+          <a href="/services/">Services</a>
+          <a href="/guides/">Guides</a>
+          <a href="/industries/">Industries</a>
+          <a href="/blog/">Blog</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </details>
+
+      <a class="btn subtle desktop-cta" href="/contact/">Contact</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" style="grid-template-columns:minmax(0,1fr);grid-template-areas:'top' 'copy';max-width:920px;">
+        <div class="hero-top">
+          <span class="pill">Legal information</span>
+        </div>
+
+        <div class="hero-copy">
+          <h1>Terms and Conditions</h1>
+          <p class="sub">
+            These terms explain the basis on which you may use the Ecommony website and make enquiries about
+            ecommerce audits, consulting and implementation support.
+          </p>
+          <p class="fine">Last updated: {lastUpdated}</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card box" style="max-width:920px;">
+          <h2>About Ecommony</h2>
+          <p>
+            Ecommony provides ecommerce technical consulting, website diagnosis, SEO, CRO, speed,
+            tracking and implementation support for Shopify, Magento, WordPress and related ecommerce websites.
+          </p>
+
+          <h2>Use of this website</h2>
+          <p>
+            You may use this website for lawful purposes only. You must not attempt to interfere with the site,
+            misuse forms, introduce malicious code, scrape the site in a harmful way or use the website in a way
+            that could damage Ecommony or other users.
+          </p>
+
+          <h2>Website content</h2>
+          <p>
+            The content on this website is provided for general information only. It is not a guarantee that any
+            particular result, ranking, conversion improvement, analytics outcome or commercial performance will
+            be achieved.
+          </p>
+
+          <h2>Enquiries and audit requests</h2>
+          <p>
+            Submitting an enquiry or audit request does not create a client relationship or obligation for Ecommony
+            to provide services. Ecommony may choose whether to respond, request further information or decline
+            work where it is not suitable.
+          </p>
+
+          <h2>Proposals and paid work</h2>
+          <p>
+            Any paid consulting, audit, implementation or support work will normally be subject to a separate
+            written proposal, scope, pricing and agreed terms. Where there is a conflict between these website
+            terms and a signed or expressly agreed client agreement, the client agreement should take priority.
+          </p>
+
+          <h2>No guaranteed results</h2>
+          <p>
+            Ecommerce performance depends on many factors, including product, pricing, brand, traffic quality,
+            technical implementation, market conditions, competitors, user behaviour and third-party platforms.
+            Ecommony does not guarantee specific revenue, ranking, speed, tracking, advertising or conversion outcomes.
+          </p>
+
+          <h2>Third-party platforms</h2>
+          <p>
+            Ecommony may discuss or support platforms such as Shopify, Magento, WordPress, Google Analytics,
+            Google Tag Manager, Google Ads, Meta, email platforms or other third-party tools. Ecommony is not
+            responsible for changes, outages, policies or limitations of third-party platforms.
+          </p>
+
+          <h2>External links</h2>
+          <p>
+            This website may link to third-party websites, documentation or resources. These links are provided
+            for convenience and context. Ecommony is not responsible for the content, availability or accuracy of
+            external websites.
+          </p>
+
+          <h2>Intellectual property</h2>
+          <p>
+            Unless otherwise stated, website content, copy, layout, structure, graphics and Ecommony materials are
+            owned by or licensed to Ecommony. You may not copy, reproduce or republish substantial parts of the
+            website without permission.
+          </p>
+
+          <h2>Liability</h2>
+          <p>
+            Nothing in these terms excludes liability where it cannot legally be excluded. To the fullest extent
+            permitted by law, Ecommony is not responsible for indirect losses, lost profits, lost revenue, lost data
+            or business interruption arising from use of the website or reliance on general website content.
+          </p>
+
+          <h2>Privacy and cookies</h2>
+          <p>
+            Use of this website may involve the processing of personal data and cookies. Please read the
+            <a href="/privacy-policy/">Privacy Policy</a> and <a href="/cookie-policy/">Cookie Policy</a>.
+          </p>
+
+          <h2>Changes to these terms</h2>
+          <p>
+            Ecommony may update these terms from time to time. The latest version will be published on this page.
+          </p>
+
+          <h2>Contact</h2>
+          <p>
+            If you have questions about these terms, email
+            <a href="mailto:nigel@ecommony.com">nigel@ecommony.com</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="foot">
+        <div class="footer-brand">
+          <strong>Ecommony</strong>
+          <span>Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.</span>
+        </div>
+
+        <div class="footer-actions">
+          <a class="btn" href="/privacy-policy/">Privacy policy</a>
+          <a class="btn" href="/cookie-policy/">Cookie policy</a>
+          <a class="btn primary" href="/contact/">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
