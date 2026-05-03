@@ -374,6 +374,39 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
         justify-content:flex-end;
       }
 
+            .footer-grid{
+        display:grid;
+        grid-template-columns:1.1fr repeat(4, minmax(130px, 1fr));
+        gap:24px;
+        align-items:start;
+        border-top:1px solid var(--line);
+        padding-top:24px;
+      }
+
+      .footer-group h3{
+        margin:0 0 10px;
+        color:var(--text);
+        font-size:14px;
+        line-height:1.2;
+      }
+
+      .footer-group nav{
+        display:grid;
+        gap:8px;
+      }
+
+      .footer-group a{
+        color:var(--muted);
+        font-size:13px;
+        line-height:1.35;
+      }
+
+      .footer-group a:hover{
+        color:var(--text);
+        text-decoration:underline;
+        text-underline-offset:2px;
+      }
+
       @media (max-width: 900px){
         .nav{
           position:relative;
@@ -401,6 +434,7 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
         .side-card{position:static}
         .foot{grid-template-columns:1fr}
         .footer-actions{justify-content:flex-start}
+        .footer-grid{grid-template-columns:1fr}
       }
 
       @media (max-width: 520px){
@@ -455,16 +489,50 @@ const seoCanonical = `${siteUrl}${Astro.url.pathname}`;
       <slot />
 
       <footer>
-        <div class="foot">
+        <div class="footer-grid">
           <div class="footer-brand">
             <strong>Ecommony</strong>
             <span>Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.</span>
           </div>
 
-          <div class="footer-actions">
-            <a class="btn" href="/ecommerce-consultant-london/">London ecommerce support</a>
-            <a class="btn" href="https://ecommony.com/#start-audit">Start free audit</a>
-            <a class="btn primary" href="/contact/">Contact</a>
+          <div class="footer-group">
+            <h3>Core pages</h3>
+            <nav aria-label="Footer core pages">
+              <a href="/services/">Services</a>
+              <a href="/guides/">Guides</a>
+              <a href="/industries/">Industries</a>
+              <a href="/blog/">Blog</a>
+              <a href="/contact/">Contact</a>
+            </nav>
+          </div>
+
+          <div class="footer-group">
+            <h3>Common problems</h3>
+            <nav aria-label="Footer common problems">
+              <a href="/ga4-ecommerce-tracking-not-working/">GA4 ecommerce tracking not working</a>
+              <a href="/shopify-ga4-revenue-not-matching/">Shopify and GA4 revenue not matching</a>
+              <a href="/shopify-site-slow/">Shopify site slow</a>
+              <a href="/shopify-conversion-rate-low/">Shopify conversion rate low</a>
+            </nav>
+          </div>
+
+          <div class="footer-group">
+            <h3>London support</h3>
+            <nav aria-label="Footer London support">
+              <a href="/ecommerce-consultant-london/">Ecommerce consultant London</a>
+              <a href="/shopify-consultant-london/">Shopify consultant London</a>
+              <a href="/technical-seo-consultant-london/">Technical SEO consultant London</a>
+              <a href="/ga4-tracking-consultant-london/">GA4 tracking consultant London</a>
+            </nav>
+          </div>
+
+          <div class="footer-group">
+            <h3>Legal</h3>
+            <nav aria-label="Footer legal pages">
+              <a href="/privacy-policy/">Privacy policy</a>
+              <a href="/cookie-policy/">Cookie policy</a>
+              <a href="/terms-and-conditions/">Terms and conditions</a>
+            </nav>
           </div>
         </div>
       </footer>
