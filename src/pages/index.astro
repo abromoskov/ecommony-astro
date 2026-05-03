@@ -7,7 +7,18 @@ import SiteFooter from '../components/SiteFooter.astro';
 <!doctype html>
 <html lang="en-GB">
 <head>
-  <!-- TEMP FCP TEST: GA4 disabled to isolate third-party script impact. Revert immediately after PageSpeed test. -->
+  <!-- Google tag (gtag.js) -->
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BFJDYQHSPM"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){window.dataLayer.push(arguments);}
+  window.gtag('js', new Date());
+
+  window.gtag('config', 'G-BFJDYQHSPM');
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#f5f1ea" />
