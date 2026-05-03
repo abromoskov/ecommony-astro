@@ -1,6 +1,6 @@
 .footer-grid{
   display:grid;
-  grid-template-columns:minmax(220px, 1.25fr) repeat(4, minmax(130px, 1fr));
+  grid-template-columns:minmax(240px, 1.3fr) repeat(4, minmax(130px, 1fr));
   gap:28px;
   align-items:start;
   border-top:1px solid var(--line);
@@ -8,14 +8,19 @@
 }
 
 .footer-grid .footer-brand{
-  max-width:280px;
+  max-width:300px;
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:rgba(255,255,255,.72);
+  box-shadow:var(--shadow2);
 }
 
 .footer-grid .footer-brand strong{
   display:block;
-  margin:0 0 10px;
+  margin:0 0 8px;
   color:var(--text);
-  font-size:15px;
+  font-size:16px;
   line-height:1.2;
   letter-spacing:-.1px;
 }
@@ -28,7 +33,7 @@
 }
 
 .footer-group{
-  padding-top:1px;
+  padding-top:4px;
 }
 
 .footer-group h3{
