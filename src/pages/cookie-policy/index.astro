@@ -1,0 +1,184 @@
+---
+const title = 'Cookie Policy | Ecommony';
+const description =
+  'Cookie policy for Ecommony, explaining how essential and analytics cookies may be used on the website.';
+const canonical = 'https://ecommony.com/cookie-policy/';
+const lastUpdated = '1 May 2026';
+---
+
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content="Ecommony" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/css/ecommony.min.css" />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Cookie Policy',
+    description,
+    url: canonical,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Ecommony',
+      url: 'https://ecommony.com/'
+    }
+  })} />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <a class="logo" href="/" aria-label="Ecommony home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Ecommony</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="/services/">Services</a>
+        <a href="/guides/">Guides</a>
+        <a href="/industries/">Industries</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+
+      <details class="mobile-menu">
+        <summary class="btn" aria-label="Open navigation menu">Menu</summary>
+        <nav class="mobile-menu__panel" aria-label="Mobile primary">
+          <a href="/">Home</a>
+          <a href="/services/">Services</a>
+          <a href="/guides/">Guides</a>
+          <a href="/industries/">Industries</a>
+          <a href="/blog/">Blog</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </details>
+
+      <a class="btn subtle desktop-cta" href="/contact/">Contact</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" style="grid-template-columns:minmax(0,1fr);grid-template-areas:'top' 'copy';max-width:920px;">
+        <div class="hero-top">
+          <span class="pill">Legal information</span>
+        </div>
+
+        <div class="hero-copy">
+          <h1>Cookie Policy</h1>
+          <p class="sub">
+            This policy explains how Ecommony uses cookies and similar technologies, including essential site
+            functionality and analytics cookies used only where consent is given.
+          </p>
+          <p class="fine">Last updated: {lastUpdated}</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card box" style="max-width:920px;">
+          <h2>What cookies are</h2>
+          <p>
+            Cookies are small files stored on your device when you visit a website. They can help a website work,
+            remember choices, understand how visitors use pages and support analytics or marketing measurement.
+          </p>
+
+          <h2>How Ecommony uses cookies</h2>
+          <p>Ecommony may use cookies and similar technologies for:</p>
+          <ul>
+            <li>Essential website functionality and security.</li>
+            <li>Remembering cookie consent choices.</li>
+            <li>Understanding how visitors use the website.</li>
+            <li>Measuring form interactions, enquiries and website performance.</li>
+          </ul>
+
+          <h2>Essential cookies</h2>
+          <p>
+            Essential cookies are needed for the website to function properly or to remember your cookie consent
+            preference. These cookies do not require consent where they are strictly necessary.
+          </p>
+
+          <h2>Analytics cookies</h2>
+          <p>
+            Ecommony uses Google Analytics to understand how the site is used and how content performs.
+            Analytics cookies should only be set where you have accepted analytics cookies through the consent
+            banner.
+          </p>
+
+          <h2>Cookie consent</h2>
+          <p>
+            Ecommony uses a consent tool to let visitors accept or reject non-essential analytics cookies.
+            You can change your browser settings to block or delete cookies. If available, you can also revisit
+            the consent controls on the website to update your choice.
+          </p>
+
+          <h2>Examples of cookies that may be used</h2>
+          <p>The exact cookies may change over time, but can include:</p>
+          <ul>
+            <li><strong>Consent cookies:</strong> used to remember whether you accepted or rejected analytics cookies.</li>
+            <li><strong>Google Analytics cookies:</strong> used to understand page visits, user interactions and website performance where consent is given.</li>
+            <li><strong>Security or operational cookies:</strong> used where needed to support basic website operation.</li>
+          </ul>
+
+          <h2>Third-party services</h2>
+          <p>
+            Some cookies or similar technologies may be set by trusted third-party services used for analytics,
+            consent management or website operation. These services may process technical data such as browser,
+            device, approximate location and interaction information.
+          </p>
+
+          <h2>Managing cookies in your browser</h2>
+          <p>
+            Most browsers allow you to block or delete cookies through browser settings. Blocking cookies may
+            affect how some parts of the website work.
+          </p>
+
+          <h2>Relationship with the Privacy Policy</h2>
+          <p>
+            Cookies may involve personal data where they identify or distinguish a device or user. For more detail
+            on how personal data may be used, read the <a href="/privacy-policy/">Privacy Policy</a>.
+          </p>
+
+          <h2>Changes to this policy</h2>
+          <p>
+            This policy may be updated from time to time. The latest version will be published on this page.
+          </p>
+
+          <h2>Contact</h2>
+          <p>
+            For questions about cookies or privacy, email
+            <a href="mailto:nigel@ecommony.com">nigel@ecommony.com</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="foot">
+        <div class="footer-brand">
+          <strong>Ecommony</strong>
+          <span>Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.</span>
+        </div>
+
+        <div class="footer-actions">
+          <a class="btn" href="/privacy-policy/">Privacy policy</a>
+          <a class="btn" href="/terms-and-conditions/">Terms</a>
+          <a class="btn primary" href="/contact/">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
