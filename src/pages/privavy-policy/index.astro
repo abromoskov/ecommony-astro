@@ -1,0 +1,197 @@
+---
+const title = 'Privacy Policy | Ecommony';
+const description =
+  'Privacy policy for Ecommony, explaining how enquiry, website and analytics data may be collected and used.';
+const canonical = 'https://ecommony.com/privacy-policy/';
+const lastUpdated = '1 May 2026';
+---
+
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content="Ecommony" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/css/ecommony.min.css" />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Privacy Policy',
+    description,
+    url: canonical,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Ecommony',
+      url: 'https://ecommony.com/'
+    }
+  })} />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <a class="logo" href="/" aria-label="Ecommony home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Ecommony</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="/services/">Services</a>
+        <a href="/guides/">Guides</a>
+        <a href="/industries/">Industries</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+
+      <details class="mobile-menu">
+        <summary class="btn" aria-label="Open navigation menu">Menu</summary>
+        <nav class="mobile-menu__panel" aria-label="Mobile primary">
+          <a href="/">Home</a>
+          <a href="/services/">Services</a>
+          <a href="/guides/">Guides</a>
+          <a href="/industries/">Industries</a>
+          <a href="/blog/">Blog</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </details>
+
+      <a class="btn subtle desktop-cta" href="/contact/">Contact</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" style="grid-template-columns:minmax(0,1fr);grid-template-areas:'top' 'copy';max-width:920px;">
+        <div class="hero-top">
+          <span class="pill">Legal information</span>
+        </div>
+
+        <div class="hero-copy">
+          <h1>Privacy Policy</h1>
+          <p class="sub">
+            This policy explains how Ecommony may collect, use and protect personal data when you visit the website,
+            submit an enquiry, request an audit or contact Ecommony directly.
+          </p>
+          <p class="fine">Last updated: {lastUpdated}</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card box" style="max-width:920px;">
+          <h2>Who this policy applies to</h2>
+          <p>
+            This policy applies to visitors to ecommony.com, people who submit a website audit request,
+            people who contact Ecommony, and prospective clients discussing ecommerce, SEO, CRO, speed,
+            tracking or related consulting services.
+          </p>
+
+          <h2>Who controls your data</h2>
+          <p>
+            Ecommony is operated by Nigel Abramow. For privacy questions, email
+            <a href="mailto:nigel@ecommony.com">nigel@ecommony.com</a>.
+          </p>
+
+          <h2>Personal data Ecommony may collect</h2>
+          <p>Ecommony may collect information you choose to provide, including:</p>
+          <ul>
+            <li>Your name, email address and phone number.</li>
+            <li>Your website URL, company name and enquiry details.</li>
+            <li>Information about your ecommerce platform, tracking setup, SEO, speed or conversion issues.</li>
+            <li>Messages you send by form, email or phone.</li>
+          </ul>
+
+          <p>Ecommony may also collect limited technical data from website use, including:</p>
+          <ul>
+            <li>IP address, browser, device, approximate location and referral information.</li>
+            <li>Pages visited, interactions, form starts and form submissions.</li>
+            <li>Cookie and analytics consent choices.</li>
+          </ul>
+
+          <h2>How Ecommony uses personal data</h2>
+          <p>Ecommony may use personal data to:</p>
+          <ul>
+            <li>Respond to enquiries and audit requests.</li>
+            <li>Assess whether Ecommony can help with a website or ecommerce issue.</li>
+            <li>Provide proposals, support, audits, implementation work or consulting services.</li>
+            <li>Improve the website, content, analytics and user experience.</li>
+            <li>Maintain basic security, spam prevention and operational records.</li>
+          </ul>
+
+          <h2>Legal bases for processing</h2>
+          <p>
+            Depending on the context, Ecommony may process personal data because it is necessary to respond to
+            your enquiry or take steps before entering into a contract, because there is a legitimate interest in
+            running and improving the business, because consent has been given for non-essential cookies or
+            analytics, or because Ecommony needs to comply with a legal obligation.
+          </p>
+
+          <h2>Cookies and analytics</h2>
+          <p>
+            Ecommony uses a cookie consent tool to manage analytics consent. Non-essential analytics cookies
+            should only be used where consent has been given. More detail is provided in the
+            <a href="/cookie-policy/">Cookie Policy</a>.
+          </p>
+
+          <h2>Who data may be shared with</h2>
+          <p>
+            Ecommony may use trusted service providers to operate the website, process forms, send email,
+            host infrastructure, manage analytics or deliver client services. These providers should only process
+            personal data where needed for the relevant service.
+          </p>
+
+          <h2>How long data is kept</h2>
+          <p>
+            Enquiry and contact data is kept for as long as needed to respond, manage the relationship, keep
+            appropriate business records and handle any follow-up. Data that is no longer needed should be
+            deleted or anonymised.
+          </p>
+
+          <h2>Your rights</h2>
+          <p>
+            Depending on your location and the circumstances, you may have rights to access, correct, delete,
+            restrict or object to the use of your personal data, and to withdraw consent where processing is based
+            on consent.
+          </p>
+
+          <h2>Complaints</h2>
+          <p>
+            If you have a concern, contact <a href="mailto:nigel@ecommony.com">nigel@ecommony.com</a>.
+            You may also have the right to complain to the UK Information Commissioner’s Office.
+          </p>
+
+          <h2>Changes to this policy</h2>
+          <p>
+            This policy may be updated from time to time. The latest version will be published on this page.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="foot">
+        <div class="footer-brand">
+          <strong>Ecommony</strong>
+          <span>Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.</span>
+        </div>
+
+        <div class="footer-actions">
+          <a class="btn" href="/cookie-policy/">Cookie policy</a>
+          <a class="btn" href="/terms-and-conditions/">Terms</a>
+          <a class="btn primary" href="/contact/">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
