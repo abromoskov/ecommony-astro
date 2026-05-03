@@ -1,3 +1,6 @@
+
+
+
 .footer-grid{
   display:grid;
   grid-template-columns:1.1fr repeat(4, minmax(130px, 1fr));
@@ -6,8 +9,11 @@
   border-top:1px solid var(--line);
   padding-top:24px;
 }
+.footer-grid .footer-brand strong{
+  display:block;
+}
 
-.footer-group h3{
+.footer-group h3, .footer-grid .footer-brand strong{
   margin:0 0 10px;
   color:var(--text);
   font-size:14px;
@@ -30,6 +36,8 @@
   text-decoration:underline;
   text-underline-offset:2px;
 }
+
+
 
 @media (max-width: 900px){
   .footer-grid{
