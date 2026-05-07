@@ -1,4 +1,5 @@
 ---
+import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/ecommony.css';
 const {
@@ -564,36 +565,7 @@ const fullImage = new URL(finalImage, site).toString();
 
   <body>
     <div class="wrap">
-      <header class="nav">
-      <a class="logo" href="#top" aria-label="Ecommony home">
-        <span class="mark" aria-hidden="true">
-          <img src="/assets/ecommony-mark.webp" alt="" width="34" height="34" />
-        </span>
-        <span>Ecommony</span>
-      </a>
-
-        <nav class="navlinks" aria-label="Primary">
-          <a href="https://ecommony.com/">Home</a>
-          <a href="/#platforms">Platforms</a>
-          <a href="/services/">Services</a>
-          <a href="/blog/">Blog</a>
-          <a href="/contact/">Contact</a>
-        </nav>
-
-        <details class="mobile-menu">
-          <summary class="btn" aria-label="Open navigation menu">Menu</summary>
-          <nav class="mobile-menu__panel" aria-label="Mobile primary">
-            <a href="https://ecommony.com/">Home</a>
-            <a href="/#platforms">Platforms</a>
-            <a href="/services/">Services</a>
-            <a href="/blog/">Blog</a>
-            <a href="/ecommerce-consultant-london/">London support</a>
-            <a href="/contact/">Contact</a>
-          </nav>
-        </details>
-
-        <a class="btn primary" href="/contact/">Contact</a>
-      </header>
+     <SiteHeader />
 
       <slot />
      
