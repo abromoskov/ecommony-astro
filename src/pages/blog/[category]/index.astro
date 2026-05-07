@@ -2,6 +2,99 @@
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../../layouts/BlogLayout.astro';
 
+const categoryContent = {
+  seo: {
+    label: 'SEO',
+    title: 'Ecommerce SEO articles',
+    description:
+      'Technical ecommerce SEO articles for Shopify, Magento and WordPress teams dealing with crawl issues, structured data, international SEO, product data conflicts and category visibility.',
+    intro:
+      'Ecommerce SEO problems usually sit between content, templates, product data, JavaScript, faceted navigation and platform behaviour. These articles explain what is happening, why it matters commercially and what to check first when rankings, rich results or category visibility start to slip.',
+    helpsWith: [
+      'Finding crawl, canonical and indexing issues before they suppress commercial pages',
+      'Understanding how product data, structured data and page templates affect search visibility',
+      'Prioritising SEO fixes that can protect revenue, not just improve technical scores',
+    ],
+    relatedLinks: [
+      {
+        href: '/technical-seo-consultant-london/',
+        title: 'Technical SEO consultant London',
+        text: 'Support for ecommerce teams dealing with crawl, indexation and technical search problems.',
+      },
+      {
+        href: '/guides/technical-seo-for-ecommerce/',
+        title: 'Technical SEO for ecommerce',
+        text: 'A practical guide to the technical issues that commonly hold ecommerce sites back.',
+      },
+      {
+        href: '/services/wordpress-technical-seo-audit/',
+        title: 'WordPress technical SEO audit',
+        text: 'Technical SEO support for WordPress and WooCommerce sites with visibility problems.',
+      },
+    ],
+  },
+  shopify: {
+    label: 'Shopify',
+    title: 'Shopify optimisation articles',
+    description:
+      'Practical Shopify articles on conversion, speed, checkout changes, tracking reliability and the technical issues that affect ecommerce performance.',
+    intro:
+      'Shopify growth problems are rarely caused by one obvious issue. Speed, checkout behaviour, tracking, app bloat, theme changes and customer confidence all affect performance. These articles explain the practical causes behind common Shopify problems and the checks that help separate guesswork from evidence.',
+    helpsWith: [
+      'Diagnosing Shopify conversion friction across product pages, baskets and checkout journeys',
+      'Understanding how Shopify theme, app and checkout changes affect speed and tracking',
+      'Prioritising practical fixes that improve customer confidence and reduce revenue leakage',
+    ],
+    relatedLinks: [
+      {
+        href: '/shopify-consultant-london/',
+        title: 'Shopify consultant London',
+        text: 'Commercial Shopify support for brands that need clearer fixes, not vague recommendations.',
+      },
+      {
+        href: '/services/shopify-cro-audit/',
+        title: 'Shopify CRO audit',
+        text: 'A focused audit of the conversion issues affecting Shopify revenue and customer flow.',
+      },
+      {
+        href: '/guides/shopify-conversion-rate-optimisation/',
+        title: 'Shopify conversion rate optimisation',
+        text: 'A practical guide to improving Shopify conversion without relying on guesswork.',
+      },
+    ],
+  },
+  tracking: {
+    label: 'Tracking',
+    title: 'Ecommerce tracking articles',
+    description:
+      'Ecommerce tracking articles covering GA4, Shopify analytics, server-side GTM, revenue mismatch, consent, attribution and measurement reliability.',
+    intro:
+      'Tracking issues distort ecommerce decision-making. When GA4, Shopify, ad platforms and server-side tagging disagree, teams can misread revenue, waste budget or optimise the wrong journey. These articles explain common tracking failures, what evidence to check first and where measurement problems usually affect commercial performance.',
+    helpsWith: [
+      'Finding why GA4, Shopify and paid media revenue numbers do not match',
+      'Understanding server-side GTM, consent and attribution trade-offs before making changes',
+      'Separating genuine performance problems from broken tracking or incomplete measurement',
+    ],
+    relatedLinks: [
+      {
+        href: '/ga4-ecommerce-tracking-not-working/',
+        title: 'GA4 ecommerce tracking not working',
+        text: 'A practical breakdown of common GA4 ecommerce tracking failures and what to check first.',
+      },
+      {
+        href: '/shopify-ga4-revenue-not-matching/',
+        title: 'Shopify and GA4 revenue not matching',
+        text: 'Why Shopify and GA4 revenue numbers drift, and how to diagnose the cause.',
+      },
+      {
+        href: '/ga4-tracking-consultant-london/',
+        title: 'GA4 tracking consultant London',
+        text: 'Hands-on tracking support for ecommerce brands that need reliable measurement.',
+      },
+    ],
+  },
+};
+
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   const categories = [...new Set(posts.map((post) => post.id.split('/')[0]))];
@@ -17,21 +110,68 @@ const { category } = Astro.props;
 const posts = (await getCollection('blog'))
   .filter((post) => post.id.split('/')[0] === category)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const fallbackContent = {
+  label: category.replace(/-/g, ' '),
+  title: `${category.replace(/-/g, ' ')} articles`,
+  description: `Technical ecommerce articles on ${category.replace(/-/g, ' ')}.`,
+  intro: `Articles focused on ${category.replace(/-/g, ' ')}, written to explain what is happening, why it matters commercially and what to check first.`,
+  helpsWith: [
+    'Understanding the practical cause of common ecommerce performance issues',
+    'Identifying what to check before making technical or marketing changes',
+    'Prioritising fixes based on likely commercial impact',
+  ],
+  relatedLinks: [
+    {
+      href: '/services/',
+      title: 'Ecommony services',
+      text: 'Practical ecommerce support across CRO, SEO, speed, tracking and platform performance.',
+    },
+    {
+      href: '/guides/',
+      title: 'Ecommony guides',
+      text: 'Commercially focused ecommerce guides for teams who want clearer next steps.',
+    },
+    {
+      href: '/contact/',
+      title: 'Contact Ecommony',
+      text: 'Ask about an audit if you want a clearer view of what is holding performance back.',
+    },
+  ],
+};
+
+const page = categoryContent[category] ?? fallbackContent;
 ---
 
 <BlogLayout
-  title={`Ecommony Blog — ${category}`}
-  description={`Technical ecommerce articles on ${category}.`}
+  title={page.title}
+  description={page.description}
+>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="/blog/">Blog</a>
+    <span aria-hidden="true">/</span>
+    <span>{page.label}</span>
+  </nav>
+
   <section class="hero">
-    <span class="pill">Category</span>
-    <h1 style="text-transform:capitalize;">{category}</h1>
-    <p class="sub">
-      Articles focused on {category}, written to explain what is happening, why it matters and what to look at first.
-    </p>
+    <span class="pill">Ecommony blog</span>
+    <h1>{page.title}</h1>
+    <p class="sub">{page.intro}</p>
+  </section>
+
+  <section class="content-card category-section">
+    <div class="eyebrow">What this section helps with</div>
+    <ul class="insight-list">
+      {page.helpsWith.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
   </section>
 
   <section class="content-card">
-    <div class="eyebrow">Articles in {category}</div>
+    <div class="eyebrow">Articles in {page.label}</div>
 
     <ul class="article-list">
       {posts.map((post) => {
@@ -51,4 +191,103 @@ const posts = (await getCollection('blog'))
       })}
     </ul>
   </section>
+
+  <section class="related-commercial-card">
+    <div class="eyebrow">Related ecommerce support</div>
+    <h2>Useful next steps if this issue is affecting revenue</h2>
+    <p>
+      These pages connect the topic to practical ecommerce fixes, audits and deeper guides.
+    </p>
+
+    <div class="related-card-grid">
+      {page.relatedLinks.map((link) => (
+        <a class="related-card" href={link.href}>
+          <strong>{link.title}</strong>
+          <span>{link.text}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <h3>Want to know what is actually holding the site back?</h3>
+    <p>
+      Ecommony reviews ecommerce sites for revenue leakage, conversion friction, tracking weakness,
+      SEO missed opportunities and speed drag, then prioritises what to fix first.
+    </p>
+    <a class="btn primary" href="/contact/">Request an ecommerce audit</a>
+  </section>
+
+  <style>
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 4px 0 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--text);
+    }
+
+    .category-section {
+      margin-bottom: 18px;
+    }
+
+    .insight-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--text);
+    }
+
+    .insight-list li {
+      margin-bottom: 10px;
+    }
+
+    .insight-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .related-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .related-card {
+      display: grid;
+      gap: 8px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow2);
+    }
+
+    .related-card strong {
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .related-card span {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 800px) {
+      .related-card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </BlogLayout>
