@@ -2,76 +2,26 @@
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../layouts/BlogLayout.astro';
 
+
+
 const posts = await getCollection('blog');
 
 const sortedPosts = posts.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-
-const categories = [
-  {
-    href: '/blog/seo/',
-    title: 'Ecommerce SEO',
-    text: 'Crawl, indexation, structured data, international SEO and product-data issues that affect commercial visibility.',
-  },
-  {
-    href: '/blog/shopify/',
-    title: 'Shopify optimisation',
-    text: 'Practical Shopify fixes across conversion, checkout behaviour, speed, tracking and theme/app performance.',
-  },
-  {
-    href: '/blog/tracking/',
-    title: 'Ecommerce tracking',
-    text: 'GA4, Shopify analytics, server-side GTM, consent, attribution and revenue mismatch problems.',
-  },
-];
-
-const diagnosticThemes = [
-  'Why revenue, conversion or traffic numbers may not tell the full story',
-  'Where speed, tracking, SEO or platform behaviour can create hidden performance drag',
-  'What to check first before spending more on ads, redesigns or development work',
-];
 ---
 
 <BlogLayout
   title="Ecommony Blog"
-  description="Technical ecommerce articles on Shopify, Magento, WordPress, SEO, tracking, site speed and conversion performance."
+  description="Technical ecommerce articles on Shopify, Magento, WordPress, SEO, tracking and speed."
 >
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Home</a>
-    <span aria-hidden="true">/</span>
-    <span>Blog</span>
-  </nav>
-
   <section class="hero">
     <span class="pill">Shopify • Magento • WordPress • SEO • Tracking • Speed</span>
-    <h1>Practical ecommerce articles for finding what is holding performance back.</h1>
+    <h1>Technical articles for teams that want websites to perform better.</h1>
     <p class="sub">
-      Ecommony articles explain the technical and commercial problems that quietly damage ecommerce performance:
-      slow pages, broken tracking, weak search visibility, checkout friction, app bloat and unclear customer journeys.
-      Each piece is written to show what is happening, why it matters and what to check first.
+      Practical analysis on ecommerce speed, conversion, SEO and tracking —
+      written to explain what is happening, why it matters and what to look at first.
     </p>
-  </section>
-
-  <section class="content-card blog-section">
-    <div class="eyebrow">Browse by topic</div>
-    <div class="category-grid">
-      {categories.map((category) => (
-        <a class="category-card" href={category.href}>
-          <strong>{category.title}</strong>
-          <span>{category.text}</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="content-card blog-section">
-    <div class="eyebrow">What these articles help diagnose</div>
-    <ul class="insight-list">
-      {diagnosticThemes.map((theme) => (
-        <li>{theme}</li>
-      ))}
-    </ul>
   </section>
 
   <section class="content-card">
@@ -97,85 +47,4 @@ const diagnosticThemes = [
       })}
     </ul>
   </section>
-
-  <section class="cta-band">
-    <h3>Need a clearer view of what to fix first?</h3>
-    <p>
-      Ecommony reviews ecommerce sites for revenue leakage, conversion friction, tracking weakness,
-      SEO missed opportunities and speed drag, then turns the evidence into a practical fix priority.
-    </p>
-    <a class="btn primary" href="/contact/">Request an ecommerce audit</a>
-  </section>
-
-  <style>
-    .breadcrumb {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      margin: 4px 0 20px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .breadcrumb a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .breadcrumb a:hover {
-      color: var(--text);
-    }
-
-    .blog-section {
-      margin-bottom: 18px;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .category-card {
-      display: grid;
-      gap: 8px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow2);
-    }
-
-    .category-card strong {
-      color: var(--text);
-      line-height: 1.25;
-    }
-
-    .category-card span {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .insight-list {
-      margin: 0;
-      padding-left: 20px;
-      color: var(--text);
-    }
-
-    .insight-list li {
-      margin-bottom: 10px;
-    }
-
-    .insight-list li:last-child {
-      margin-bottom: 0;
-    }
-
-    @media (max-width: 800px) {
-      .category-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </BlogLayout>

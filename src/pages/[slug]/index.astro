@@ -3,6 +3,7 @@ import IntentPageLayout from '../../layouts/IntentPageLayout.astro';
 import { locationPages, getLocationPagePath } from '../../data/locationPages';
 import { problemPages, getProblemPagePath } from '../../data/problemPages';
 
+
 export function getStaticPaths() {
   return [
     ...locationPages.map((page) => ({
@@ -245,83 +246,3 @@ const faqSchema = {
   </div>
 </IntentPageLayout>
 
-<style>
-  .summary-card {
-    margin: 0 0 22px;
-    padding: 22px 24px;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    background: rgba(255,255,255,.94);
-    box-shadow: var(--shadow2);
-    max-width: 900px;
-  }
-
-  .summary-card p {
-    margin: 0;
-    color: var(--text);
-    font-size: clamp(18px, 1.8vw, 21px);
-    line-height: 1.65;
-    letter-spacing: -.15px;
-  }
-
-  .location-link-grid,
-  .source-list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .source-list {
-    margin-top: 16px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .location-link-card,
-  .source-card {
-    display: block;
-    padding: 18px;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background: #fff;
-    box-shadow: var(--shadow2);
-  }
-
-  .location-link-card h3,
-  .source-card h3 {
-    margin: 0 0 8px;
-    font-size: 20px;
-    line-height: 1.18;
-    letter-spacing: -.25px;
-  }
-
-  .location-link-card p,
-  .source-card p {
-    margin: 0 0 12px;
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.55;
-  }
-
-  .location-link-card span,
-  .source-card span {
-    font-weight: 800;
-  }
-
-  .interpretation-card {
-    padding: 20px;
-    border: 1px solid rgba(197,138,45,.24);
-    border-radius: 18px;
-    background: linear-gradient(135deg, rgba(197,138,45,.08), rgba(27,43,68,.06)), #fff;
-  }
-
-  @media (max-width: 900px) {
-    .location-link-grid,
-    .source-list {
-      grid-template-columns: 1fr;
-    }
-
-    .summary-card {
-      padding: 18px;
-    }
-  }
-</style>

@@ -1,6 +1,7 @@
 ---
 import IntentPageLayout from '../../layouts/IntentPageLayout.astro';
 import { intentPages, getIntentPagePath } from '../../data/intentPages';
+import '../styles/ecommony.css';
 
 type HubSection = 'services' | 'guides' | 'industries';
 
@@ -399,76 +400,4 @@ const breadcrumbSchema = {
   </main>
 </IntentPageLayout>
 
-<style>
-  .hub-intro {
-    padding: 4px 0 2px;
-  }
 
-  .hub-group {
-    padding-top: 4px;
-    border-top: 1px solid var(--line);
-  }
-
-  .hub-group__header {
-    max-width: 760px;
-    margin-bottom: 16px;
-  }
-
-  .hub-group__header h2 {
-    margin-bottom: 8px;
-  }
-
-  .hub-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  .hub-card {
-    display: block;
-    padding: 20px;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    background: rgba(255,255,255,.9);
-    box-shadow: var(--shadow2);
-  }
-
-  .hub-card:hover {
-    transform: translateY(-1px);
-  }
-
-  .hub-card__eyebrow {
-    display: inline-flex;
-    margin-bottom: 10px;
-    color: var(--muted2);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-  }
-
-  .hub-card h3 {
-    margin: 0 0 10px;
-    font-size: 23px;
-    line-height: 1.16;
-    letter-spacing: -.35px;
-  }
-
-  .hub-card p {
-    margin: 0 0 14px;
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.55;
-  }
-
-  .hub-card__link {
-    font-weight: 800;
-    color: var(--text);
-  }
-
-  @media (max-width: 800px) {
-    .hub-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
