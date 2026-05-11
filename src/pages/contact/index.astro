@@ -10,14 +10,7 @@ const description =
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFJDYQHSPM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BFJDYQHSPM');
-  </script>
+
 
   <title>{title}</title>
   <meta name="description" content={description} />
@@ -194,5 +187,35 @@ const description =
       });
     }
   </script>
+  <!-- Google tag (gtag.js) — delayed until idle to protect first paint -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+
+    function loadEcommonyGA4(){
+      if (window.__ecommonyGA4Loaded) return;
+      window.__ecommonyGA4Loaded = true;
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-BFJDYQHSPM';
+      document.head.appendChild(script);
+
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-BFJDYQHSPM');
+    }
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(loadEcommonyGA4, { timeout: 3000 });
+    } else {
+      window.addEventListener('load', function(){
+        window.setTimeout(loadEcommonyGA4, 1000);
+      });
+    }
+  </script>
+  <script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.min.js"></script>
 </body>
 </html>
