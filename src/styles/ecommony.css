@@ -488,6 +488,140 @@ h1 {
 }
 
 /* =========================================================
+   Contact and legacy standalone page utilities
+   Used by contact and older standalone pages.
+   ========================================================= */
+
+.section {
+  padding: 28px 0;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+.cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid rgba(16, 24, 38, .08);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, .76);
+  box-shadow: var(--shadow2);
+  backdrop-filter: saturate(1.15) blur(10px);
+}
+
+.box {
+  padding: 18px;
+}
+
+.box p,
+.box ul {
+  color: var(--muted);
+}
+
+.box p {
+  margin: 0 0 10px;
+}
+
+.box ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.box li {
+  margin: 10px 0;
+}
+
+.fine {
+  color: rgba(95, 103, 117, .92);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.tagRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0 0;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .90);
+  color: var(--muted);
+  font-size: 12px;
+  box-shadow: var(--shadow2);
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .86);
+  color: var(--text);
+  box-shadow: var(--shadow2);
+  outline: 0;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
+  appearance: none;
+}
+
+input:hover,
+textarea:hover {
+  border-color: rgba(16, 24, 38, .18);
+  background: rgba(255, 255, 255, .94);
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(197, 138, 45, .35);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(197, 138, 45, .10), var(--shadow2);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(95, 103, 117, .72);
+  font-family: inherit;
+  font-size: 15px;
+}
+
+textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+
+
+/* =========================================================
    Intent pages
    ========================================================= */
 
@@ -1006,6 +1140,14 @@ footer {
 
   .footer-bottom {
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .cols-2,
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: 1fr;
   }
 }
 

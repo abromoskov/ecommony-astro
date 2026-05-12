@@ -1,9 +1,12 @@
 ---
+import '../../styles/ecommony.css';
+import SiteFooter from '../../components/SiteFooter.astro';
 const title = 'Cookie Policy | Ecommony';
 const description =
   'Cookie policy for Ecommony, explaining how essential and analytics cookies may be used on the website.';
 const canonical = 'https://ecommony.com/cookie-policy/';
 const lastUpdated = '1 May 2026';
+
 ---
 
 <!doctype html>
@@ -165,20 +168,7 @@ const lastUpdated = '1 May 2026';
       </section>
     </main>
 
-    <footer>
-      <div class="foot">
-        <div class="footer-brand">
-          <strong>Ecommony</strong>
-          <span>Ecommerce technical consulting for Shopify, Magento and WordPress — focused on speed, conversion, SEO and tracking confidence.</span>
-        </div>
-
-        <div class="footer-actions">
-          <a class="btn" href="/privacy-policy/">Privacy policy</a>
-          <a class="btn" href="/terms-and-conditions/">Terms</a>
-          <a class="btn primary" href="/contact/">Contact</a>
-        </div>
-      </div>
-    </footer>
+<SiteFooter />
   </div>
 </body>
 </html>
