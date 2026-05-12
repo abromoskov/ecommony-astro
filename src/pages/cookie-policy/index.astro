@@ -1,6 +1,7 @@
 ---
 import '../../styles/ecommony.css';
 import SiteFooter from '../../components/SiteFooter.astro';
+import TrackingScripts from '../../components/TrackingScripts.astro';
 const title = 'Cookie Policy | Ecommony';
 const description =
   'Cookie policy for Ecommony, explaining how essential and analytics cookies may be used on the website.';
@@ -76,9 +77,8 @@ const lastUpdated = '1 May 2026';
 
     <main id="top">
       <section class="hero" style="grid-template-columns:minmax(0,1fr);grid-template-areas:'top' 'copy';max-width:920px;">
-        <div class="hero-top">
-          <span class="pill">Legal information</span>
-        </div>
+   
+   
 
         <div class="hero-copy">
           <h1>Cookie Policy</h1>
@@ -170,5 +170,6 @@ const lastUpdated = '1 May 2026';
 
 <SiteFooter />
   </div>
+  <TrackingScripts />
 </body>
 </html>
