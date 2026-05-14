@@ -8,6 +8,9 @@ export type ProblemPage = {
   introTitle: string;
   intro: string;
   symptoms: string[];
+  scoringTitle?: string;
+  scoringIntro?: string;
+  scoringBands?: string[];
   whatBreaks: string[];
   whatToCheckFirst: string[];
   evidenceIntro: string;
@@ -30,6 +33,142 @@ export type ProblemPage = {
 };
 
 export const problemPages: ProblemPage[] = [
+  
+  {
+    slug: 'ecommerce-revenue-leakage-index',
+    eyebrow: 'Ecommerce revenue leakage',
+    title: 'The Ecommerce Revenue Leakage Index: a score for where growth gets lost after the click',
+    description:
+      'A practical guide to Ecommony’s Ecommerce Revenue Leakage Index: a 0 to 100 diagnostic score for tracking, speed, checkout, SEO, trust and competitor resilience.',
+    serviceType: 'Ecommerce revenue leakage diagnosis',
+    summary:
+      'The Ecommerce Revenue Leakage Index is Ecommony’s diagnostic score for estimating how well an ecommerce site protects existing demand from revenue leakage. Scored from 0 to 100, it looks across tracking confidence, speed, checkout, SEO, trust and competitor resilience. A higher score means the site appears better protected against visible revenue loss.',
+    introTitle: 'What the Ecommerce Revenue Leakage Index measures',
+    intro:
+      'The Ecommerce Revenue Leakage Index is Ecommony’s diagnostic scoring framework for identifying where ecommerce revenue is being protected or lost after traffic reaches the site. It scores six commercial zones — tracking confidence, speed resilience, checkout completion strength, SEO capture strength, trust strength and competitor resilience — and produces a positive score from 0 to 100. A higher score means the site appears better protected against visible revenue leakage. The purpose is not to create a vanity metric; it is to help ecommerce teams understand which weakness is most likely limiting profitable growth and what to investigate first.',
+    symptoms: [
+      'Traffic is increasing, but revenue, conversion rate or profitability is not improving at the same pace.',
+      'The business is spending more to acquire customers, but paid media efficiency is getting harder to maintain.',
+      'GA4, Shopify, WooCommerce, Magento or ad platform revenue numbers do not agree, making performance decisions harder to trust.',
+      'Mobile users reach product, basket or checkout pages, but too many drop away before completing a purchase.',
+      'Product, collection or category pages receive traffic, but do not create enough add-to-cart, checkout or purchase activity.',
+      'The site looks acceptable internally, but competitors appear clearer, faster, more trustworthy or easier to buy from.'
+    ],
+    whatBreaks: [
+      'Tracking confidence — how reliably the site captures revenue, conversion and checkout data without missing, duplicated or inconsistent ecommerce events.',
+      'Speed resilience — how well key landing, collection, product, basket and checkout pages hold up against mobile speed issues, heavy scripts and third-party tag weight.',
+      'Checkout completion strength — how effectively the site helps customers move from basket to purchase without delivery uncertainty, payment friction, weak reassurance, form issues or unexpected costs.',
+      'SEO capture strength — how well product, collection and category pages are positioned to capture qualified organic demand through indexation, crawlability, internal linking, structured data and commercial relevance.',
+      'Trust strength — how well the site creates buyer confidence through reviews, delivery clarity, returns messaging, payment reassurance, product proof and above-the-fold credibility.',
+      'Competitor resilience — how well the site holds up against direct competitors on clarity, speed, offer strength, proof, search visibility, UX and ease of purchase.'
+    ],
+    scoringTitle: 'How the Revenue Leakage Index score works',
+    scoringIntro:
+      'The Ecommerce Revenue Leakage Index produces a positive score from 0 to 100. A higher score means stronger visible revenue protection across the six diagnostic zones. A lower score suggests that existing demand may be leaking through tracking, speed, checkout, SEO, trust or competitor weakness.',
+    scoringBands: [
+      '90–100: excellent visible revenue protection, with limited obvious leakage across the diagnostic areas reviewed.',
+      '75–89: strong revenue protection, but with clear optimisation opportunities.',
+      '60–74: moderate leakage risk, where several visible weaknesses may be suppressing conversion, measurement confidence or product discovery.',
+      '40–59: elevated leakage risk, where multiple leakage zones are likely affecting profitable growth.',
+      '0–39: high leakage risk, where the site shows substantial visible risk across measurement, speed, checkout, trust, SEO or competitor positioning.'
+    ],
+    whatToCheckFirst: [
+      'Compare ecommerce platform revenue against GA4 and paid media conversion reporting.',
+      'Check mobile page speed, Core Web Vitals and third-party script weight on key landing and product pages.',
+      'Review add-to-cart, begin-checkout and purchase drop-off by device, channel and landing page.',
+      'Check whether priority product, collection and category pages are indexable, internally linked and supported by structured data.',
+      'Review trust signals above the fold, including reviews, delivery clarity, returns, payment reassurance and product proof.',
+      'Compare the customer journey against direct competitors for speed, clarity, offer strength and confidence signals.'
+    ],
+    evidenceIntro:
+      'The index score is a diagnostic estimate, not a guaranteed revenue forecast. It uses Ecommony’s audit methodology and recognised ecommerce benchmarks to assess visible revenue protection across tracking, speed, checkout, SEO, trust and competitor positioning. As Ecommony gathers more anonymised audit data, the scoring model can be refined into a fuller benchmark showing which leakage zones appear most often across real ecommerce sites.',
+    sources: [
+      {
+        label: 'Baymard Institute cart abandonment rate benchmark',
+        url: 'https://baymard.com/lists/cart-abandonment-rate',
+        note: 'Long-running benchmark aggregation for ecommerce cart abandonment.'
+      },
+      {
+        label: 'Shopify ecommerce conversion rate benchmark guidance',
+        url: 'https://www.shopify.com/uk/blog/ecommerce-conversion-rate',
+        note: 'Explains typical ecommerce conversion rate ranges and why they vary by industry and context.'
+      },
+      {
+        label: 'Google Core Web Vitals',
+        url: 'https://web.dev/articles/vitals',
+        note: 'Defines Core Web Vitals and page experience metrics including LCP, INP and CLS.'
+      },
+      {
+        label: 'Google ecommerce structured data guidance',
+        url: 'https://developers.google.com/search/docs/specialty/ecommerce/include-structured-data-relevant-to-ecommerce',
+        note: 'Explains structured data relevant to ecommerce search visibility and merchant experiences.'
+      },
+      {
+        label: 'Contentsquare digital experience benchmarks',
+        url: 'https://contentsquare.com/insights/digital-experience-benchmark/',
+        note: 'Benchmark research on digital experience, frustration, traffic quality and conversion behaviour.'
+      }
+    ],
+    ecommonyInterpretation:
+      'The commercial value of the score is not the number on its own. The value is the breakdown. A site might score well overall but still lose revenue through one weak zone, such as unreliable tracking, slow mobile product pages or poor checkout reassurance. Ecommony uses the index to move ecommerce teams from vague underperformance to a clearer diagnosis of what is leaking, why it matters and what should be fixed first.',
+    help: [
+      'Score visible revenue protection across tracking, speed, checkout, SEO, trust and competitor resilience.',
+      'Identify the lowest-scoring leakage zones most likely to suppress profitable growth.',
+      'Compare analytics data against ecommerce platform and paid media reporting.',
+      'Review mobile performance, product discovery, trust signals and checkout friction on commercially important journeys.',
+      'Turn the score into a prioritised action plan showing what to fix first.'
+    ],
+    relatedLinks: [
+      {
+        label: 'Ecommerce conversion audit',
+        href: '/services/ecommerce-conversion-audit/',
+        description: 'Find the customer journey, trust and UX issues that are suppressing conversion.'
+      },
+      {
+        label: 'GA4 ecommerce tracking audit',
+        href: '/services/ga4-ecommerce-tracking-audit/',
+        description: 'Check whether revenue, checkout and conversion data can be trusted.'
+      },
+      {
+        label: 'Shopify speed optimisation',
+        href: '/services/shopify-speed-optimisation/',
+        description: 'Diagnose speed drag, script weight and mobile performance issues that affect conversion.'
+      },
+      {
+        label: 'Technical SEO for ecommerce',
+        href: '/guides/technical-seo-for-ecommerce/',
+        description: 'Understand the technical SEO issues that affect ecommerce visibility and product discovery.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'What is the Ecommerce Revenue Leakage Index?',
+        answer:
+          'The Ecommerce Revenue Leakage Index is Ecommony’s diagnostic score for estimating how well an ecommerce site protects existing demand from revenue leakage. It scores visible performance across tracking confidence, speed, checkout, SEO, trust and competitor resilience.'
+      },
+      {
+        question: 'Is the Revenue Leakage Index a score?',
+        answer:
+          'Yes. The index is designed as a positive score from 0 to 100. A higher score means the site appears better protected against visible revenue leakage. A lower score suggests that existing demand may be leaking through one or more commercial weaknesses.'
+      },
+      {
+        question: 'Is revenue leakage the same as low conversion rate?',
+        answer:
+          'Not exactly. Low conversion rate is one symptom. Revenue leakage looks at the causes behind underperformance, including tracking accuracy, mobile speed, checkout friction, SEO capture, trust signals and competitor advantage.'
+      },
+      {
+        question: 'Why use external benchmarks before Ecommony has its own audit dataset?',
+        answer:
+          'External ecommerce benchmarks provide useful context while Ecommony builds a larger anonymised audit dataset. The index should be treated as a diagnostic estimate, not a guaranteed revenue forecast.'
+      },
+      {
+        question: 'What should ecommerce teams check first?',
+        answer:
+          'Start with a quick diagnosis across the six zones: tracking, speed, checkout, SEO, trust and competitor resilience. The lowest-scoring zone is usually the best place to investigate first.'
+      }
+    ]
+  },
+  
   {
     slug: 'ga4-ecommerce-tracking-not-working',
     eyebrow: 'GA4 ecommerce tracking not working',

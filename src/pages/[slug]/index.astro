@@ -43,6 +43,11 @@ const hasProblemSections = page.pageKind === 'problem';
 const hasSources = 'sources' in page && Array.isArray(page.sources) && page.sources.length > 0;
 const hasInterpretation = 'ecommonyInterpretation' in page && Boolean(page.ecommonyInterpretation);
 const hasWhatBreaks = 'whatBreaks' in page && Array.isArray(page.whatBreaks) && page.whatBreaks.length > 0;
+const hasScoring =
+  Boolean(page.scoringTitle) &&
+  Boolean(page.scoringIntro) &&
+  Array.isArray(page.scoringBands) &&
+  page.scoringBands.length > 0;
 const hasWhatToCheckFirst = 'whatToCheckFirst' in page && Array.isArray(page.whatToCheckFirst) && page.whatToCheckFirst.length > 0;
 
 const breadcrumbSchema = {
@@ -159,9 +164,20 @@ const faqSchema = {
         </section>
       )}
 
+      {hasScoring && (
+        <section class="section-block">
+          <h2>{page.scoringTitle}</h2>
+          <p>{page.scoringIntro}</p>
+          <ul class="check-list">
+            {page.scoringBands?.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      )}
+
       {hasWhatToCheckFirst && (
         <section class="section-block">
           <h2>What to check first</h2>
+          <p>For a quick diagnosis:</p>
           <ul class="check-list">
             {page.whatToCheckFirst.map((item) => <li>{item}</li>)}
           </ul>

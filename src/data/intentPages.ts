@@ -16,6 +16,7 @@ export type IntentPage = {
 };
 
 export const intentPages: IntentPage[] = [
+  
   {
     section: 'services',
     slug: 'shopify-cro-audit',
