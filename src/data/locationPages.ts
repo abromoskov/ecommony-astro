@@ -24,10 +24,10 @@ export const locationPages: LocationPage[] = [
     eyebrow: 'Ecommerce consultant London',
     title: 'Ecommerce consultant in London for Shopify, Magento and WordPress growth',
     description:
-      'London-based ecommerce consulting for brands that need clearer priorities across speed, SEO, conversion, tracking and technical growth.',
+      'Find where your ecommerce site is leaking revenue. London-based consultant for Shopify, Magento, CRO, speed, SEO and tracking fixes that improve performance.',
     serviceType: 'Ecommerce consulting',
     intro:
-      'Ecommony helps London and UK ecommerce teams understand why their site is underperforming and what to fix first. The work connects technical performance, conversion friction, SEO visibility, analytics confidence and commercial prioritisation.',
+      'If your ecommerce site is getting traffic but revenue is not moving, the problem is usually not one thing. It is often a mix of slow templates, weak product journeys, tracking gaps, SEO leakage and conversion friction. Ecommony helps London and UK ecommerce brands find the issues that are quietly costing revenue — then prioritise what to fix first.',
     symptoms: [
       'Traffic is coming in but conversion is weaker than expected.',
       'The site feels slow, technically messy or hard to improve without breaking something.',
@@ -61,7 +61,7 @@ export const locationPages: LocationPage[] = [
       {
         question: 'Do you only work with London businesses?',
         answer:
-          'No. Ecommony is London-based but supports ecommerce businesses across the UK. London pages are useful for brands looking for local ecommerce consulting support.'
+          'No. Ecommony is London-based but supports ecommerce businesses across the UK. The focus is practical ecommerce growth: finding the speed, SEO, tracking and conversion issues that are costing revenue, then prioritising the fixes that matter most.'
       },
       {
         question: 'What platforms do you support?',
@@ -80,10 +80,10 @@ export const locationPages: LocationPage[] = [
     eyebrow: 'Shopify consultant London',
     title: 'Shopify consultant in London for CRO, speed and ecommerce growth',
     description:
-      'Shopify consulting for London and UK brands that need stronger conversion, faster journeys, cleaner tracking and clearer growth priorities.',
+      'Fix the Shopify issues holding back revenue: slow themes, app bloat, weak product pages, checkout friction and unreliable GA4 tracking.',
     serviceType: 'Shopify consulting',
     intro:
-      'Ecommony helps Shopify teams identify the apps, scripts, templates, customer journey issues and tracking gaps that hold back growth. The focus is on practical commercial improvements rather than cosmetic theme changes.',
+      'If your Shopify store is slow, hard to track or converting below where it should, the problem is often hidden in the theme, apps, templates, product pages or checkout journey. Ecommony helps Shopify brands find the issues costing revenue and prioritise the fixes with the strongest commercial impact.',
     symptoms: [
       'Shopify conversion rate is flat despite traffic and paid media activity.',
       'Apps, scripts or theme changes have made the store slower over time.',
@@ -127,7 +127,7 @@ export const locationPages: LocationPage[] = [
       {
         question: 'Can you improve Shopify speed?',
         answer:
-          'Yes. Ecommony reviews app load, scripts, theme weight, images, templates and Core Web Vitals issues to identify what is slowing the store down.'
+          'Yes. Ecommony reviews app load, scripts, theme weight, images, templates and Core Web Vitals issues to identify what is slowing the store down and which fixes are most likely to improve conversion.'
       }
     ]
   },
@@ -136,10 +136,10 @@ export const locationPages: LocationPage[] = [
     eyebrow: 'Technical SEO consultant London',
     title: 'Technical SEO consultant in London for ecommerce and high-consideration websites',
     description:
-      'Technical SEO consulting for London and UK ecommerce teams that need stronger crawlability, structure, metadata, schema, speed and organic growth foundations.',
+      'Find the technical SEO issues limiting ecommerce growth: crawl waste, weak metadata, schema gaps, slow pages, duplicate content and indexation problems.',
     serviceType: 'Technical SEO consulting',
     intro:
-      'Ecommony helps ecommerce and high-consideration websites find the technical SEO issues that limit qualified organic growth. The focus is on crawlability, indexation, site structure, page quality, structured data and commercial prioritisation.',
+      'If your ecommerce SEO has stalled, the issue may not be content volume. It may be crawl waste, weak templates, poor metadata, schema gaps, duplicate pages, indexation problems or speed issues that stop Google from understanding the site properly. Ecommony finds the technical issues limiting organic growth and turns them into a prioritised fix plan.',
     symptoms: [
       'Organic visibility is weaker than expected outside branded searches.',
       'Important product, service or guide pages are not ranking strongly enough.',
@@ -192,10 +192,10 @@ export const locationPages: LocationPage[] = [
     eyebrow: 'GA4 tracking consultant London',
     title: 'GA4 tracking consultant in London for ecommerce measurement confidence',
     description:
-      'GA4 and GTM tracking support for London and UK ecommerce teams that need cleaner events, reliable conversion data and stronger reporting confidence.',
+      'GA4 revenue not matching Shopify, Magento or your ad platforms? Find broken ecommerce tracking, missing events and attribution gaps before they distort decisions.',
     serviceType: 'GA4 and GTM tracking consulting',
     intro:
-      'Ecommony helps ecommerce teams understand whether GA4, GTM, Shopify, paid media and conversion tracking are giving them reliable data. The goal is to identify missing events, duplicated conversions, checkout gaps and reporting problems before they distort growth decisions.',
+      'If GA4 revenue does not match Shopify, Magento or your ad platforms, the problem can quickly distort budget, reporting and growth decisions. Ecommony helps ecommerce teams find missing events, duplicated conversions, checkout gaps, consent issues and attribution problems before unreliable data leads to the wrong priorities.',
     symptoms: [
       'GA4 revenue, Shopify revenue and paid media conversions do not reconcile clearly.',
       'Checkout, lead or ecommerce events appear missing, duplicated or unreliable.',
