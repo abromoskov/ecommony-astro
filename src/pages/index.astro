@@ -160,6 +160,12 @@ import SiteFooter from '../components/SiteFooter.astro';
               <input name="name" id="name" placeholder="Your name" autocomplete="name" required />
               <input name="email" id="email" placeholder="Work email (we’ll send your report here)" autocomplete="email" type="email" required />
               <input name="url" id="url" placeholder="Website (e.g. example.com)" autocomplete="url" required />
+              <input
+                name="product_url"
+                id="product_url"
+                placeholder="Product page to check (optional)"
+                autocomplete="url"
+              />
               <textarea name="notes" id="notes" placeholder="What are you trying to improve? (optional)"></textarea>
       
               <input
@@ -917,166 +923,208 @@ import SiteFooter from '../components/SiteFooter.astro';
     });
   </script>
 
-  <script>
-    const form = document.getElementById("contactForm");
-    const msg = document.getElementById("formMsg");
+<script>
+  const form = document.getElementById("contactForm");
+  const msg = document.getElementById("formMsg");
 
-    const getVal = (id) => {
-      const el = document.getElementById(id);
-      return el && typeof el.value === "string" ? el.value.trim() : "";
-    };
+  const getVal = (id) => {
+    const el = document.getElementById(id);
+    return el && typeof el.value === "string" ? el.value.trim() : "";
+  };
 
-    const clearFieldError = (field) => {
-      field.classList.remove("input-error");
-      const next = field.nextElementSibling;
-      if (next && next.classList.contains("field-error")) {
-        next.remove();
-      }
-    };
+  const clearFieldError = (field) => {
+    if (!field) return;
 
-    const setFieldError = (field, text) => {
-      clearFieldError(field);
-      field.classList.add("input-error");
-      const error = document.createElement("p");
-      error.className = "field-error";
-      error.textContent = text;
-      field.insertAdjacentElement("afterend", error);
-    };
+    field.classList.remove("input-error");
 
-    const normaliseUrl = (value) => {
-      if (!value) return "";
-      let v = value.trim();
-      if (!/^https?:\/\//i.test(v)) {
-        v = "https://" + v;
-      }
-      return v;
-    };
+    const next = field.nextElementSibling;
+    if (next && next.classList.contains("field-error")) {
+      next.remove();
+    }
+  };
 
-    const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const setFieldError = (field, text) => {
+    if (!field) return;
 
-    if (form) {
-      const submitBtn = form.querySelector('button[type="submit"]');
+    clearFieldError(field);
+    field.classList.add("input-error");
 
-      let auditFormStarted = false;
-      form.addEventListener("input", () => {
+    const error = document.createElement("p");
+    error.className = "field-error";
+    error.textContent = text;
+
+    field.insertAdjacentElement("afterend", error);
+  };
+
+  const normaliseUrl = (value) => {
+    if (!value) return "";
+
+    let v = value.trim();
+
+    if (!/^https?:\/\//i.test(v)) {
+      v = "https://" + v;
+    }
+
+    return v;
+  };
+
+  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+  if (form) {
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    let auditFormStarted = false;
+
+    form.addEventListener(
+      "input",
+      () => {
         if (!auditFormStarted) {
           auditFormStarted = true;
+
           window.trackEcommonyEvent("audit_form_start", {
             form_id: "contactForm",
-            form_name: "Free audit form"
+            form_name: "Free audit form",
           });
         }
-      }, { once: true });
+      },
+      { once: true }
+    );
 
-      ["name", "email", "url", "notes"].forEach((id) => {
-        const field = document.getElementById(id);
-        if (field) {
-          field.addEventListener("input", () => clearFieldError(field));
-        }
+    ["name", "email", "url", "product_url", "notes"].forEach((id) => {
+      const field = document.getElementById(id);
+
+      if (field) {
+        field.addEventListener("input", () => clearFieldError(field));
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (msg) msg.textContent = "";
+
+      const nameField = document.getElementById("name");
+      const emailField = document.getElementById("email");
+      const urlField = document.getElementById("url");
+      const productUrlField = document.getElementById("product_url");
+
+      const name = getVal("name");
+      const email = getVal("email");
+      const urlRaw = getVal("url");
+      const url = normaliseUrl(urlRaw);
+      const productUrlRaw = getVal("product_url");
+      const product_url = productUrlRaw ? normaliseUrl(productUrlRaw) : "";
+      const notes = getVal("notes");
+      const company = getVal("company");
+
+      let hasError = false;
+
+      [nameField, emailField, urlField, productUrlField].forEach((field) => {
+        clearFieldError(field);
       });
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        if (msg) msg.textContent = "";
+      if (!name) {
+        setFieldError(nameField, "Please enter your name.");
+        hasError = true;
+      }
 
-        const nameField = document.getElementById("name");
-        const emailField = document.getElementById("email");
-        const urlField = document.getElementById("url");
+      if (!email) {
+        setFieldError(emailField, "Please enter your email.");
+        hasError = true;
+      } else if (!isValidEmail(email)) {
+        setFieldError(emailField, "Please enter a valid email address.");
+        hasError = true;
+      }
 
-        const name = getVal("name");
-        const email = getVal("email");
-        const urlRaw = getVal("url");
-        const url = normaliseUrl(urlRaw);
-        const notes = getVal("notes");
-        const company = getVal("company");
+      if (!urlRaw) {
+        setFieldError(urlField, "Please enter your website.");
+        hasError = true;
+      } else {
+        try {
+          new URL(url);
+        } catch {
+          setFieldError(urlField, "Please enter a valid website address.");
+          hasError = true;
+        }
+      }
 
-        let hasError = false;
+      if (productUrlRaw) {
+        try {
+          new URL(product_url);
+        } catch {
+          setFieldError(productUrlField, "Please enter a valid product page URL.");
+          hasError = true;
+        }
+      }
 
-        [nameField, emailField, urlField].forEach((field) => {
-          if (field) clearFieldError(field);
+      if (hasError) {
+        if (msg) msg.textContent = "Please correct the highlighted fields.";
+        return;
+      }
+
+      const payload = {
+        name,
+        email,
+        url,
+        product_url,
+        notes,
+        company,
+      };
+
+      try {
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Running audit…";
+        }
+
+        if (msg) msg.textContent = "Running your audit…";
+
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
         });
 
-        if (!name) {
-          setFieldError(nameField, "Please enter your name.");
-          hasError = true;
+        const text = await res.text();
+        let data = {};
+
+        try {
+          data = JSON.parse(text);
+        } catch {
+          throw new Error("Invalid JSON returned from server");
         }
 
-        if (!email) {
-          setFieldError(emailField, "Please enter your email.");
-          hasError = true;
-        } else if (!isValidEmail(email)) {
-          setFieldError(emailField, "Please enter a valid email address.");
-          hasError = true;
+        if (!res.ok || !data.ok) {
+          throw new Error(data.error || `Request failed with status ${res.status}`);
         }
 
-        if (!urlRaw) {
-          setFieldError(urlField, "Please enter your website.");
-          hasError = true;
-        } else {
-          try {
-            new URL(url);
-          } catch {
-            setFieldError(urlField, "Please enter a valid website address.");
-            hasError = true;
-          }
-        }
+        if (data.redirect) {
+          window.trackEcommonyEvent("audit_form_submit", {
+            form_id: "contactForm",
+            form_name: "Free audit form",
+            product_url_supplied: Boolean(product_url),
+          });
 
-        if (hasError) {
-          if (msg) msg.textContent = "Please correct the highlighted fields.";
+          window.location.assign(data.redirect);
           return;
         }
 
-        const payload = { name, email, url, notes, company };
+        throw new Error("No redirect returned from server");
+      } catch (err) {
+        console.error("Audit handoff failed:", err);
 
-        try {
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Running audit…";
-          }
-
-          if (msg) msg.textContent = "Running your audit…";
-
-          const res = await fetch(form.action, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-
-          const text = await res.text();
-          let data = {};
-
-          try {
-            data = JSON.parse(text);
-          } catch {
-            throw new Error("Invalid JSON returned from server");
-          }
-
-          if (!res.ok || !data.ok) {
-            throw new Error(data.error || `Request failed with status ${res.status}`);
-          }
-
-          if (data.redirect) {
-            window.trackEcommonyEvent("audit_form_submit", {
-              form_id: "contactForm",
-              form_name: "Free audit form"
-            });
-            window.location.assign(data.redirect);
-            return;
-          }
-
-          throw new Error("No redirect returned from server");
-        } catch (err) {
-          console.error("Audit handoff failed:", err);
-          if (msg) msg.textContent = "Sorry — something failed. Please try again.";
-        } finally {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Get my free audit";
-          }
+        if (msg) {
+          msg.textContent = "Sorry — something failed. Please try again.";
         }
-      });
-    }
-  </script>
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Start my free audit";
+        }
+      }
+    });
+  }
+</script>
 
   <script>
     const contactForm2 = document.getElementById("contactForm2");
