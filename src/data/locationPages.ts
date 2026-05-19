@@ -75,6 +75,73 @@ export const locationPages: LocationPage[] = [
       }
     ]
   },
+    {
+    slug: 'performance-marketing-optimisation-london',
+    eyebrow: 'Performance marketing optimisation London',
+    title: 'Performance marketing optimisation for London ecommerce brands that need profitable growth',
+    description:
+      'Find where ecommerce performance marketing is leaking revenue. London ecommerce consultant for paid search, paid social, landing pages, tracking, CRM and channel mix.',
+    serviceType: 'Performance marketing optimisation',
+    intro:
+      'If paid search or paid social is getting more expensive but revenue is not scaling profitably, the problem may not be the campaign setup alone. Many ecommerce brands lose performance through weak landing pages, unclear product journeys, tracking gaps, poor CRM capture and an unbalanced channel mix. Ecommony helps London ecommerce brands diagnose where performance marketing is leaking revenue — and what to fix before increasing spend.',
+
+    symptoms: [
+      'Paid search or paid social spend is rising but profitable revenue is not improving clearly.',
+      'ROAS may look acceptable in-platform, but profit, cashflow or MER does not feel strong enough.',
+      'The brand may be too dependent on paid acquisition while SEO, CRM, retention or partnerships are underdeveloped.',
+      'Agencies are optimising campaigns, but landing pages, product pages, tracking and channel mix still feel unresolved.'
+    ],
+    help: [
+      'Performance mix review across paid search, paid social, SEO, CRM, affiliate, marketplace and retention signals.',
+      'Landing page and product page diagnosis to identify where paid traffic loses purchase intent.',
+      'Tracking and measurement review so channel decisions are not based on unreliable data.',
+      'A clear action plan showing what to fix before increasing media spend.'
+    ],
+    relatedLinks: [
+      {
+        label: 'Ecommerce conversion audit',
+        href: '/services/ecommerce-conversion-audit/',
+        description: 'Find where landing pages, product journeys, trust signals and checkout friction are limiting revenue.'
+      },
+      {
+        label: 'GA4 tracking consultant London',
+        href: '/ga4-tracking-consultant-london/',
+        description: 'Review whether tracking gaps are distorting channel performance and budget decisions.'
+      },
+      {
+        label: 'Ecommerce consultant London',
+        href: '/ecommerce-consultant-london/',
+        description: 'Get broader ecommerce growth diagnosis across CRO, SEO, speed, tracking and platform issues.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is performance marketing optimisation the same as hiring a paid media agency?',
+        answer:
+          'No. A paid media agency usually focuses on campaign management. Ecommony looks at the wider ecommerce performance system: landing pages, product pages, tracking, SEO, CRM, offer clarity and channel mix. The aim is to find why paid traffic is not turning into profitable growth.'
+      },
+      {
+        question: 'Can you work alongside our existing paid media agency?',
+        answer:
+          'Yes. Ecommony can provide an independent diagnosis of the site, tracking and channel mix so your existing agency has clearer commercial priorities and stronger landing page evidence to work with.'
+      },
+      {
+        question: 'What channels are included in the review?',
+        answer:
+          'The review can cover paid search, paid social, SEO, email and CRM, affiliate or partnership signals, organic social, marketplace presence and retention opportunities. The focus is on visible evidence, commercial impact and practical next steps.'
+      },
+      {
+        question: 'Do you need access to ad accounts or GA4?',
+        answer:
+          'A basic review can start from visible site, tracking and journey evidence. Access to GA4, Google Ads, Meta Ads, Shopify, Klaviyo or other platforms allows a deeper review of actual performance, attribution and channel profitability.'
+      },
+      {
+        question: 'When should an ecommerce brand get this reviewed?',
+        answer:
+          'It is useful when paid media costs are rising, ROAS is becoming harder to trust, conversion rate is flat, tracking is unclear, or the brand needs to know whether to increase spend, fix the site, improve CRM or rebalance the channel mix.'
+      }
+    ]
+  },
   {
     slug: 'shopify-consultant-london',
     eyebrow: 'Shopify consultant London',
