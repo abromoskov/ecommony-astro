@@ -22,7 +22,7 @@ export const locationPages: LocationPage[] = [
 {
   slug: 'ecommerce-consultant-london',
   eyebrow: 'Ecommerce consultant London',
-  title: 'Ecommerce Consultant London | Find What Is Limiting Revenue',
+ title: 'Ecommerce Consultant London | Revenue Leakage Fix',
   description:
     'London ecommerce consultant for Shopify, Magento and WordPress brands. Find speed, SEO, tracking and conversion issues costing revenue — with a clear fix plan.',
   serviceType: 'Ecommerce consulting',
