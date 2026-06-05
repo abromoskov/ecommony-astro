@@ -3,7 +3,6 @@ import IntentPageLayout from '../../layouts/IntentPageLayout.astro';
 import { locationPages, getLocationPagePath } from '../../data/locationPages';
 import { problemPages, getProblemPagePath } from '../../data/problemPages';
 
-
 export function getStaticPaths() {
   return [
     ...locationPages.map((page) => ({
@@ -48,7 +47,19 @@ const hasScoring =
   Boolean(page.scoringIntro) &&
   Array.isArray(page.scoringBands) &&
   page.scoringBands.length > 0;
-const hasWhatToCheckFirst = 'whatToCheckFirst' in page && Array.isArray(page.whatToCheckFirst) && page.whatToCheckFirst.length > 0;
+const hasWhatToCheckFirst =
+  'whatToCheckFirst' in page &&
+  Array.isArray(page.whatToCheckFirst) &&
+  page.whatToCheckFirst.length > 0;
+
+const hasRichHero = Boolean(page.hero);
+const hasQuickAnswer = Boolean(page.quickAnswer);
+const hasLocationProblemGroups =
+  Array.isArray(page.problemGroups) && page.problemGroups.length > 0;
+const hasCommercialImpact = Boolean(page.commercialImpact);
+const hasProcess = Boolean(page.process) && Array.isArray(page.process.steps) && page.process.steps.length > 0;
+const hasProof = Boolean(page.proof);
+const hasFinalCta = Boolean(page.finalCta);
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -129,10 +140,31 @@ const faqSchema = {
     <span>{page.eyebrow}</span>
   </nav>
 
-  <section class="intent-hero">
-        {/* <span class="pill">{page.eyebrow}</span>  */}
-    <h1>{page.title}</h1>
-    <p class="sub">{page.description}</p>
+  <section class={hasRichHero ? 'intent-hero intent-hero--rich' : 'intent-hero'}>
+    <h1>{page.h1 || page.title}</h1>
+    <p class="sub">{hasRichHero ? page.hero.summary : page.description}</p>
+
+    {hasRichHero && page.hero.bullets?.length > 0 && (
+      <ul class="hero-proof-list">
+        {page.hero.bullets.map((item) => <li>{item}</li>)}
+      </ul>
+    )}
+
+    {hasRichHero && (page.hero.primaryCta || page.hero.secondaryCta) && (
+      <div class="hero-actions">
+        {page.hero.primaryCta && (
+          <a class="btn primary" href={page.hero.primaryCta.href}>
+            {page.hero.primaryCta.label}
+          </a>
+        )}
+
+        {page.hero.secondaryCta && (
+          <a class="btn" href={page.hero.secondaryCta.href}>
+            {page.hero.secondaryCta.label}
+          </a>
+        )}
+      </div>
+    )}
   </section>
 
   {hasSummary && (
@@ -143,6 +175,13 @@ const faqSchema = {
 
   <div class="intent-grid">
     <main class="content-card">
+      {hasQuickAnswer && (
+        <section class="section-block section-block--lead">
+          <h2>{page.quickAnswer.heading}</h2>
+          <p>{page.quickAnswer.body}</p>
+        </section>
+      )}
+
       <section class="section-block">
         <h2>{page.introTitle || 'London ecommerce support with a practical commercial focus'}</h2>
         <p>{page.intro}</p>
@@ -154,6 +193,49 @@ const faqSchema = {
           {page.symptoms.map((item) => <li>{item}</li>)}
         </ul>
       </section>
+
+      {hasLocationProblemGroups && (
+        <section class="section-block">
+          <h2>Where ecommerce growth usually leaks</h2>
+          <div class="problem-group-list">
+            {page.problemGroups.map((group) => (
+              <article class="problem-group-card">
+                <h3>{group.heading}</h3>
+                <p>{group.body}</p>
+
+                <div class="problem-group-columns">
+                  <div>
+                    <h4>Common signs</h4>
+                    <ul class="check-list">
+                      {group.symptoms.map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4>What Ecommony checks</h4>
+                    <ul class="check-list">
+                      {group.checks.map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {hasCommercialImpact && (
+        <section class="section-block interpretation-card">
+          <h2>{page.commercialImpact.heading}</h2>
+          <p>{page.commercialImpact.body}</p>
+
+          {page.commercialImpact.bullets?.length > 0 && (
+            <ul class="check-list">
+              {page.commercialImpact.bullets.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </section>
+      )}
 
       {hasWhatBreaks && (
         <section class="section-block">
@@ -215,6 +297,36 @@ const faqSchema = {
         </ul>
       </section>
 
+      {hasProcess && (
+        <section class="section-block">
+          <h2>{page.process.heading}</h2>
+          <div class="process-list">
+            {page.process.steps.map((step, index) => (
+              <article class="process-step">
+                <span>{index + 1}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {hasProof && (
+        <section class="section-block interpretation-card">
+          <h2>{page.proof.heading}</h2>
+          <p>{page.proof.body}</p>
+
+          {page.proof.bullets?.length > 0 && (
+            <ul class="check-list">
+              {page.proof.bullets.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </section>
+      )}
+
       <section class="section-block">
         <h2>Related services and guides</h2>
         <div class="location-link-grid">
@@ -239,16 +351,39 @@ const faqSchema = {
           ))}
         </div>
       </section>
+
+      {hasFinalCta && (
+        <section class="section-block final-cta-card">
+          <h2>{page.finalCta.heading}</h2>
+          <p>{page.finalCta.body}</p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href={page.finalCta.primaryCta.href}>
+              {page.finalCta.primaryCta.label}
+            </a>
+
+            {page.finalCta.secondaryCta && (
+              <a class="btn" href={page.finalCta.secondaryCta.href}>
+                {page.finalCta.secondaryCta.label}
+              </a>
+            )}
+          </div>
+        </section>
+      )}
     </main>
 
     <aside class="side-card">
-      <h2>{hasProblemSections ? 'Need the tracking checked?' : 'Talk through the problem'}</h2>
+      <h2>{hasRichHero ? 'Find the revenue leaks' : hasProblemSections ? 'Need the tracking checked?' : 'Talk through the problem'}</h2>
       <p>
-        {hasProblemSections
-          ? 'If GA4, GTM, Shopify or paid media reporting no longer looks reliable, start with a focused tracking review.'
-          : 'If you need London-based ecommerce, SEO, Shopify, GA4 or technical growth support, start with a short enquiry.'}
+        {hasRichHero
+          ? 'If your ecommerce site is getting traffic but not enough profitable revenue, start with a focused diagnosis of acquisition, conversion, tracking, retention and channel mix.'
+          : hasProblemSections
+            ? 'If GA4, GTM, Shopify or paid media reporting no longer looks reliable, start with a focused tracking review.'
+            : 'If you need London-based ecommerce, SEO, Shopify, GA4 or technical growth support, start with a short enquiry.'}
       </p>
-      <a class="btn primary" href="/contact/">Contact Ecommony</a>
+      <a class="btn primary" href="/contact/">
+        {hasRichHero ? 'Find where money is being lost' : 'Contact Ecommony'}
+      </a>
 
       <hr style="border:0;border-top:1px solid rgba(11,18,32,.10);margin:22px 0;" />
 
@@ -261,4 +396,3 @@ const faqSchema = {
     </aside>
   </div>
 </IntentPageLayout>
-

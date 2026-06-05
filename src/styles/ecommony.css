@@ -488,6 +488,204 @@ h1 {
 }
 
 /* =========================================================
+   Rich intent landing pages
+   ========================================================= */
+
+.intent-hero--rich {
+  max-width: 980px;
+  padding-top: 24px;
+  padding-bottom: 34px;
+}
+
+.intent-hero--rich h1 {
+  max-width: 16ch;
+}
+
+.intent-hero--rich .sub {
+  max-width: 780px;
+  color: rgba(16, 24, 38, .82);
+  font-size: clamp(18px, 1.9vw, 22px);
+}
+
+.hero-proof-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 900px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-proof-list li {
+  position: relative;
+  padding: 14px 14px 14px 42px;
+  border: 1px solid rgba(16, 24, 38, .10);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .82);
+  color: var(--text);
+  box-shadow: var(--shadow2);
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.hero-proof-list li::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.section-block--lead {
+  padding: 22px;
+  border: 1px solid rgba(27, 43, 68, .14);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(27, 43, 68, .06), rgba(197, 138, 45, .06)),
+    rgba(255, 255, 255, .94);
+}
+
+.section-block--lead p {
+  color: rgba(16, 24, 38, .84);
+  font-size: 19px;
+  line-height: 1.72;
+}
+
+.problem-group-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.problem-group-card {
+  padding: 22px;
+  border: 1px solid rgba(16, 24, 38, .10);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: var(--shadow2);
+}
+
+.problem-group-card h3 {
+  margin: 0 0 8px;
+  font-size: clamp(22px, 2.1vw, 28px);
+  line-height: 1.15;
+  letter-spacing: -.35px;
+}
+
+.problem-group-card > p {
+  margin: 0;
+  max-width: 760px;
+  color: rgba(16, 24, 38, .78);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.problem-group-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.problem-group-columns h4 {
+  margin: 0 0 10px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.problem-group-columns .check-list {
+  margin-top: 0;
+}
+
+.problem-group-columns .check-list li {
+  padding: 12px 12px 12px 36px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.problem-group-columns .check-list li::before {
+  left: 15px;
+  top: 18px;
+  width: 8px;
+  height: 8px;
+}
+
+.process-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid rgba(16, 24, 38, .10);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--shadow2);
+}
+
+.process-step > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  color: #fff;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.process-step h3 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.process-step p {
+  margin: 0;
+  color: rgba(16, 24, 38, .76);
+  font-size: 16px;
+  line-height: 1.58;
+}
+
+.final-cta-card {
+  padding: 24px;
+  border: 1px solid rgba(197, 138, 45, .26);
+  border-radius: 22px;
+  background:
+    linear-gradient(135deg, rgba(197, 138, 45, .12), rgba(27, 43, 68, .08)),
+    #fff;
+  box-shadow: var(--shadow);
+}
+
+.final-cta-card p {
+  max-width: 760px;
+  color: rgba(16, 24, 38, .82);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+/* =========================================================
    Contact and legacy standalone page utilities
    Used by contact and older standalone pages.
    ========================================================= */
@@ -1083,6 +1281,21 @@ footer {
   .location-link-grid,
   .source-list {
     grid-template-columns: 1fr;
+  }
+
+    .hero-proof-list,
+  .problem-group-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .intent-hero--rich {
+    padding-bottom: 24px;
+  }
+
+  .problem-group-card,
+  .section-block--lead,
+  .final-cta-card {
+    padding: 18px;
   }
 
   .side-card {
