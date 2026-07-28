@@ -1,5 +1,6 @@
 import { fractionalHeadOfEcommercePage } from './fractionalHeadOfEcommerce';
 import { aiWorkflowOptimisationPage } from './aiWorkflowOptimisation';
+import { ecommerceRevenueLeakageAuditPage } from './ecommerceRevenueLeakageAudit';
 
 export type IntentPage = {
   section: 'services' | 'guides' | 'industries';
@@ -7,6 +8,7 @@ export type IntentPage = {
   eyebrow: string;
   title: string;
   description: string;
+  metaDescription?: string;
   intentSummary: string;
   symptoms: string[];
   commercialImpact: string[];
@@ -17,6 +19,7 @@ export type IntentPage = {
     intro?: string[];
     items?: string[];
     outro?: string[];
+    emphasis?: string[];
   }[];
   faqs: {
     question: string;
@@ -704,6 +707,7 @@ export const intentPages: IntentPage[] = [
   },
   fractionalHeadOfEcommercePage,
   aiWorkflowOptimisationPage,
+  ecommerceRevenueLeakageAuditPage,
   {
     section: 'guides',
     slug: 'shopify-conversion-rate-optimisation',

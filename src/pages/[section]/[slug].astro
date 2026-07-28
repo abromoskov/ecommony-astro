@@ -64,7 +64,7 @@ const breadcrumbSchema = {
 
 <IntentPageLayout
   title={page.title}
-  description={page.description}
+  description={page.metaDescription ?? page.description}
   eyebrow={page.eyebrow}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -97,6 +97,7 @@ const breadcrumbSchema = {
               </ul>
             )}
             {section.outro?.map((paragraph) => <p>{paragraph}</p>)}
+            {section.emphasis?.map((paragraph) => <p><strong>{paragraph}</strong></p>)}
           </section>
         ))
       ) : (
