@@ -1,4 +1,5 @@
 import { fractionalHeadOfEcommercePage } from './fractionalHeadOfEcommerce';
+import { aiWorkflowOptimisationPage } from './aiWorkflowOptimisation';
 
 export type IntentPage = {
   section: 'services' | 'guides' | 'industries';
@@ -702,6 +703,7 @@ export const intentPages: IntentPage[] = [
     ]
   },
   fractionalHeadOfEcommercePage,
+  aiWorkflowOptimisationPage,
   {
     section: 'guides',
     slug: 'shopify-conversion-rate-optimisation',
