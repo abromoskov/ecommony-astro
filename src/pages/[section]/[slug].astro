@@ -86,38 +86,55 @@ const breadcrumbSchema = {
 
   <div class="intent-grid">
     <main class="content-card">
-      <section class="section-block">
-        <h2>What is usually happening</h2>
-        <p>{page.intentSummary}</p>
-      </section>
+      {page.contentSections ? (
+        page.contentSections.map((section) => (
+          <section class="section-block">
+            {section.title && <h2>{section.title}</h2>}
+            {section.intro?.map((paragraph) => <p>{paragraph}</p>)}
+            {section.items && (
+              <ul class="check-list">
+                {section.items.map((item) => <li>{item}</li>)}
+              </ul>
+            )}
+            {section.outro?.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+        ))
+      ) : (
+        <>
+          <section class="section-block">
+            <h2>What is usually happening</h2>
+            <p>{page.intentSummary}</p>
+          </section>
 
-      <section class="section-block">
-        <h2>Common symptoms</h2>
-        <ul class="check-list">
-          {page.symptoms.map((item) => <li>{item}</li>)}
-        </ul>
-      </section>
+          <section class="section-block">
+            <h2>Common symptoms</h2>
+            <ul class="check-list">
+              {page.symptoms.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
 
-      <section class="section-block">
-        <h2>Why it matters commercially</h2>
-        <ul class="check-list">
-          {page.commercialImpact.map((item) => <li>{item}</li>)}
-        </ul>
-      </section>
+          <section class="section-block">
+            <h2>Why it matters commercially</h2>
+            <ul class="check-list">
+              {page.commercialImpact.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
 
-      <section class="section-block">
-        <h2>What to fix first</h2>
-        <ul class="check-list">
-          {page.whatToFixFirst.map((item) => <li>{item}</li>)}
-        </ul>
-      </section>
+          <section class="section-block">
+            <h2>What to fix first</h2>
+            <ul class="check-list">
+              {page.whatToFixFirst.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
 
-      <section class="section-block">
-        <h2>How Ecommony helps</h2>
-        <ul class="check-list">
-          {page.howEcommonyHelps.map((item) => <li>{item}</li>)}
-        </ul>
-      </section>
+          <section class="section-block">
+            <h2>How Ecommony helps</h2>
+            <ul class="check-list">
+              {page.howEcommonyHelps.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+        </>
+      )}
 
       <section class="section-block">
         <h2>Questions this page answers</h2>

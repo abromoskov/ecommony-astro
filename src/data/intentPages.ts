@@ -1,3 +1,5 @@
+import { fractionalHeadOfEcommercePage } from './fractionalHeadOfEcommerce';
+
 export type IntentPage = {
   section: 'services' | 'guides' | 'industries';
   slug: string;
@@ -9,6 +11,12 @@ export type IntentPage = {
   commercialImpact: string[];
   whatToFixFirst: string[];
   howEcommonyHelps: string[];
+  contentSections?: {
+    title?: string;
+    intro?: string[];
+    items?: string[];
+    outro?: string[];
+  }[];
   faqs: {
     question: string;
     answer: string;
@@ -693,63 +701,7 @@ export const intentPages: IntentPage[] = [
       }
     ]
   },
-  {
-    section: 'services',
-    slug: 'fractional-head-of-ecommerce',
-    eyebrow: 'Fractional Head of Ecommerce',
-    title: 'Fractional Head of Ecommerce for brands that need senior commercial direction',
-    description:
-      'Senior ecommerce leadership for brands that need clearer growth priorities, stronger agency management, a disciplined trading rhythm and confident tracking without hiring a full-time Head of Ecommerce.',
-    intentSummary:
-      'Ecommerce growth can stall when responsibility is spread across founders, marketers, agencies and developers without one senior owner connecting commercial targets to day-to-day decisions. A Fractional Head of Ecommerce brings that ownership into the business, setting direction, challenging performance, coordinating partners and building a practical plan around the changes most likely to improve revenue, profit and marketing efficiency.',
-    symptoms: [
-      'Ecommerce decisions are split across several people but nobody owns the overall commercial plan.',
-      'Agencies and specialists deliver activity without enough senior direction or accountability.',
-      'Trading meetings focus on reporting results rather than deciding what to do next.',
-      'Tracking and channel data conflict, making growth priorities difficult to defend.',
-      'The business needs experienced ecommerce leadership but is not ready for a full-time senior hire.'
-    ],
-    commercialImpact: [
-      'Budget is spread across disconnected initiatives instead of the highest-value growth opportunities.',
-      'Agencies work in silos, creating slower delivery and weaker commercial accountability.',
-      'Promotions, merchandising and acquisition decisions become reactive rather than part of a consistent trading rhythm.',
-      'Senior teams lose confidence in forecasts and investment decisions when measurement is unclear.'
-    ],
-    whatToFixFirst: [
-      'Set clear ecommerce targets, ownership and decision-making responsibilities.',
-      'Establish a trading rhythm that connects performance reporting to weekly actions and longer-term priorities.',
-      'Review agency scopes, roadmaps and results against shared commercial outcomes.',
-      'Create a prioritised growth plan covering conversion, retention, acquisition, merchandising, technology and tracking confidence.'
-    ],
-    howEcommonyHelps: [
-      'Provides senior ecommerce leadership without the cost or commitment of a full-time Head of Ecommerce.',
-      'Turns commercial goals into a focused roadmap with clear owners, measures and priorities.',
-      'Directs agencies and internal teams around shared outcomes rather than isolated channel activity.',
-      'Improves trading discipline, tracking confidence and the quality of ecommerce investment decisions.'
-    ],
-    faqs: [
-      {
-        question: 'What does a Fractional Head of Ecommerce do?',
-        answer:
-          'A Fractional Head of Ecommerce provides part-time senior leadership across ecommerce strategy, trading, agencies, conversion, acquisition, retention, technology and measurement, with responsibility for turning commercial goals into coordinated action.'
-      },
-      {
-        question: 'When should a brand use a fractional ecommerce leader?',
-        answer:
-          'It is useful when ecommerce has become commercially important but the business does not yet need, cannot justify or is not ready to recruit a full-time Head of Ecommerce.'
-      },
-      {
-        question: 'Can a Fractional Head of Ecommerce manage existing agencies?',
-        answer:
-          'Yes. The role can set clearer briefs, align agency roadmaps, challenge recommendations, review performance and ensure specialist partners work toward the same commercial priorities.'
-      },
-      {
-        question: 'Is this an advisory role or a hands-on role?',
-        answer:
-          'It can include both. The balance depends on the team, but the focus is practical leadership: setting direction, improving decisions, coordinating delivery and maintaining accountability for progress.'
-      }
-    ]
-  },
+  fractionalHeadOfEcommercePage,
   {
     section: 'guides',
     slug: 'shopify-conversion-rate-optimisation',
